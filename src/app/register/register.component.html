@@ -1,0 +1,12 @@
+<pre>{{ (user | async)?.name | json}}</pre>
+<h1>{{ (user | async)?.name}}</h1>
+<p *ngFor="let item of items | async">{{ item.name }}</p> 
+
+<div class="container">
+	<label for="">Email</label>
+	<input type="text" [(ngModel)]="email">
+
+	<label for="">Password</label>
+	<input type="text" [(ngModel)]="pass">
+	<button (click)="createNewUser()">Sign Up</button>
+</div> 

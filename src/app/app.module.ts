@@ -7,10 +7,14 @@ import { AppComponent } from './app.component';
 
 import firebaseConfig from './config/env';
 import { AngularFireModule } from 'angularfire2';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
