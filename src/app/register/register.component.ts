@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+// import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+// import { AngularFireAuth } from 'angularfire2/auth';
+// import * as firebase from 'firebase/app';
 
 @Component({
   	selector: 'app-register',
@@ -13,18 +13,18 @@ export class RegisterComponent implements OnInit {
 	email = '';
 	pass = '';
   	title = 'Contacts';
-  	items: FirebaseListObservable<any>;
-  	user: FirebaseObjectObservable<any>;
+  	// items: FirebaseListObservable<any>;
+  	// user: FirebaseObjectObservable<any>;
 
-  	constructor(public af: AngularFire) {
-  		this.auth = firebase.auth();
-	    this.items = af.database.list('/items');
-	    this.af.auth.subscribe(user => {
-	    	if (user) {
-	    		// user.uid
-	    		this.user = af.database.object('users/' + user.uid);
-	    	} 
-	    });
+  	constructor() {
+  		// this.auth = firebase.auth();
+	   //  this.items = af.database.list('/items');
+	   //  this.af.auth.subscribe(user => {
+	   //  	if (user) {
+	   //  		// user.uid
+	   //  		this.user = af.database.object('users/' + user.uid);
+	   //  	} 
+	   //  });
 	}
 
   	ngOnInit() {
@@ -32,9 +32,9 @@ export class RegisterComponent implements OnInit {
 
   	createNewUser() {
 		// firebase, not angularfire2
-		const promise = this.auth.createUserWithEmailAndPassword(this.email, this.pass);
-		promise.catch(e => {
-			console.log(e.message);
-		});
+		// const promise = this.auth.createUserWithEmailAndPassword(this.email, this.pass);
+		// promise.catch(e => {
+		// 	console.log(e.message);
+		// });
 	}
 }

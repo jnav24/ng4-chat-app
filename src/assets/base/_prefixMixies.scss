@@ -1,0 +1,1973 @@
+// :::::::::::::::::::::::::::::::::::::: CSS3 Prefix Mixies
+// to delete extra line breaks: ctrl + h, find ^\n, replace leave blank, select regular expressions, replace all
+//
+// Everything is listed in alphabetical order according to mixin name.
+// This started as a prefix only library but it also holds some of my most used functions. 
+// The idea of this is to make tedious tasks simplier.
+//
+// NOTE:
+// For most of these, you will only need a value; size, color, etc. 
+// I tried to keep the mixin name the same as the actual css name of the property.
+//
+// EX:
+// @include border-radius(10px);
+//
+// NOTE: 
+// If you noticed certain prefixes are commented out
+// its because they're no longer needed.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::: Index
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// : animation($value)
+// : animation-delay($value)
+// : animation-direction($value)
+// : animation-timing-function($value)
+// : background-clip($value)
+// : border-radius($value)
+// : box
+// : box-flex($value)
+// : box-direction($value)
+// : box-shadow($value)
+// : box-sizing($value)
+// : calc($property,$expression)
+// : circle($width, $color)
+// : clearfix
+// : colgrid($gutterSize,$columnAmount)
+// : colgriduneven($col, $colamount, $float, $bigCol)
+// : column-count($value)
+// : column-gap($value)
+// : column-rule($value)
+// : column-width($value)
+// : diamond($bd, $color)
+// : diamond-shield($bd, $color)
+// : flex
+// : flex-box($value)
+// : flex-direction($value)
+// : flex-wrap($value)
+// : font-face($font-family,$font-path)
+// : font-face-inline($font-family,$font-path)
+// : gradient($pos,($array)) $pos can be top, left, adown (angle right down), aup (angle right up)
+// : h($start, $end) for range or h() for all or h($end) range to $end
+// : heart($width, $color)
+// : hexagon($size, $color)
+// : hide
+// : icon-home($color, $size)
+// : icon-ribbon($color, $size, $dir)
+// : ie($ver) just enter IE version number(s); no commas
+// : ie-inline
+// : infinity($size, $color)
+// : keyframe($name)
+// : loader($size,$color)
+// : loaderanimate
+// : mediaq($size)
+// : no-filter
+// : no-gradient
+// : octagon($size, $color, $bg)
+// : opacity($value) Enter a digit from 0 to 10.
+// : oval($width, $color)
+// : pacman($size, $color)
+// : parallelogram($width, $color)
+// : pb8($size, $color)
+// : pb12($size, $color)
+// : pentagon($size, $color)
+// : placeholder($phColor)
+// : posa($top,$right,$bottom,$left)
+// : show
+// : star-five($bd, $color)
+// : star-six($bd, $color)
+// : talkbubble($pad, $radius, $color)
+// : transform($value)
+// : transform-origin($value)
+// : transition($value)
+// : trapezoid($size, $color)
+// : triangle($width, $dir, $color)
+// : triangle-corner($width, $dir, $color)
+
+
+// : pxtoem($target)
+// : emtopx(target)
+// : capitalize($string) // only works on Sass 3.3+
+// : camelize($string) // only works on Sass 3.3+
+// : ccw($cols)
+// : explode($string,$delimiter)
+// : implode($array)
+// : text-contrast($background)
+// : first($array)
+// : last($array)
+// : last-index($array, $value)
+// : replace($array,$old-value,$new-value)
+// : replace-nth($array,$index,$new-value)
+// : remove($array,$value)
+// : remove-nth($array,$index)
+// : reverse($array)
+// : prepend($list, $value)
+
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::: Mixins
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE:
+// You can place multiple values for animation in this order:
+// animation/keyframe name, seconds, timing function, delay, count, direction, play state
+// EX
+// animation: myfirst 5s linear 2s infinite alternate;
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin animation($value) {
+	@each $pf in -webkit-,-moz-,-ms-,-o-,'' {
+		#{$pf}animation: $value;
+	}
+}
+
+@mixin animation-delay($value) {
+	@each $pf in -webkit-,-moz-,-ms-,-o-,'' {
+		#{$pf}animation-delay: $value;
+	}
+}
+
+@mixin animation-direction($value) {
+	@each $pf in -webkit-,-moz-,-ms-,-o-,'' {
+		#{$pf}animation-direction: $value;
+	}
+}
+
+@mixin animation-timing-function($value) {
+	@each $pf in -webkit-,-moz-,-ms-,-o-,'' {
+		#{$pf}animation-timing-function: $value;
+	}
+}
+
+@mixin background-clip($value) {
+	@each $pf in -webkit-,-moz-,'' {
+		#{$pf}background-clip: $value;
+	}
+}
+
+@mixin border-radius($value) {
+	@each $pf in -webkit-,'' {
+		#{$pf}border-radius: $value;
+	}
+}
+
+@mixin box {
+	@each $pf in -moz-,-webkit-,'' {
+		display: #{$pf}box;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE:
+// Substitues float.
+// Must declare @include box on parent and box-flex on children.
+// Also NOTE:
+// box-flex may get replaced with flex eventually.
+// Current Compatibility with:
+// chrome
+// safari
+// firefox
+// opera under -webkit-
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin box-flex($value) {
+	@each $pf in -webkit-,-moz-,-ms-,'' {
+		#{$pf}box-flex: $value;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// Property accepts:
+// normal, reverse, & inherit
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin box-direction($value) {
+	@each $pf in -webkit-,-moz-,-ms-,'' {
+		#{$pf}box-direction: $value;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE:
+// If you have more than one values to be declared than wrap all the values between ()
+// EX
+// @include box-shadow( ($value1, $value2, $value3) );
+// Just substiute the $value for what you are actually putting in.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin box-shadow($value) {
+	// -webkit- is still here to support older iOS, blackberry and android browsers.
+	@each $pf in -webkit-,'' {
+		#{$pf}box-shadow: $value;
+	}
+}
+
+@mixin box-sizing($value) {
+	@each $pf in -webkit-,-moz-,'' {
+		#{$pf}box-sizing: $value;
+	}
+}
+
+@mixin calc($property, $expression) {  
+     #{$property}: -webkit-calc(#{$expression}); 
+     #{$property}: -moz-calc(#{$expression});
+     #{$property}: calc(#{$expression}); 
+}
+
+@mixin circle($width, $color) {
+	height: $width;
+	width: $width;
+	background: $color;
+	@include border-radius($width/2);
+	@include background-clip(padding-box);
+}
+
+@mixin clearfix {
+	display: block;
+	&:after, &:before {
+		content: ".";
+		display: block;
+		clear: both;
+		visibility: hidden;
+		line-height: 0;
+		height: 0;
+	}
+}
+
+@mixin colgrid($gutterSize, $columnAmount, $direction: left, $col: ".col") {
+	@include clearfix;
+	$columns: 12;
+
+	#{$col} {
+		$evenDivide: ($columns/$columnAmount); 
+		$gutter: ($gutterSize/($columnAmount - 1)) + $gutterSize; 
+
+		float: $direction;
+		@if $direction == left {
+			margin: {
+				left: 0 !important;
+				right: ccw( $gutter ) !important;
+			}
+		}
+		@else {
+			margin: {
+				left: ccw($gutter) !important;
+				right: 0 !important;
+			}
+		}
+
+		width: ccw( ($columns/$columnAmount) - $gutterSize );
+		// @include box-sizing(border-box);
+		&:nth-of-type(#{$columnAmount}n+#{$columnAmount}) {
+			@if $direction == left {
+				margin-right: 0 !important;
+			}
+			@else {
+				margin-left: 0 !important;
+			}
+		}
+	}
+	
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// $colamount - the amount of total columns
+// $col - amount of columns for the biggest column
+// i.e.
+// span { @include colgriduneven(6,4,false); }
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin colgriduneven($col, $colamount, $float: true, $bigCol: 1) {
+	$columns: 12;
+	$diff: ($columns - $col);
+	$divide: $diff/($colamount - 1);
+
+	@if $bigCol > $colamount {
+		@warn "The amount of columns #{$colamount} and the nth column #{$bigCol} do not match up.";
+	}
+
+	@if $float {
+		float: left;
+	}
+	@else {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	text-align: center;
+	width: ccw($divide);
+
+	&:nth-of-type(#{$bigCol}) {
+		text-align: left;
+		width: ccw($col);
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// Creates columns for the text.
+// Supports all except <= IE9
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin column-count($value) {
+	-webkit-column-count: $value;
+	-moz-column-count: $value;
+	-ms-column-count: $value;
+	-o-column-count: $value;
+	column-count: $value;
+}
+
+@mixin column-gap($value) {
+	-webkit-column-gap: $value;
+	-moz-column-gap: $value;
+	-ms-column-gap: $value;
+	-o-column-gap: $value;
+	column-gap: $value;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Basically the same attributes as border.
+// ex
+// 3px solid red
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+@mixin column-rule($value) {
+	-webkit-column-rule: $value;
+	-moz-column-rule: $value;
+	-ms-column-rule: $value;
+	-o-column-rule: $value;
+	column-rule: $value;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Use this as oppose to column-count
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin column-width($value) {
+	-webkit-column-width: $value;
+	-moz-column-width: $value;
+	-ms-column-width: $value;
+	-o-column-width: $value;
+	column-width: $value;
+}
+//
+@mixin diamond($bd, $color) {
+	width: 0;
+	height: 0;
+	border: $bd solid transparent;
+	border-bottom-color: $color;
+	position: relative;
+	top: -$bd;
+	&:after {
+		content: '';
+		position: absolute;
+		left: -$bd;
+		top: $bd;
+		width: 0;
+		height: 0;
+		border: $bd solid transparent;
+		border-top-color: $color;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE 
+// $bd is the size of the diamond. If the size is less then 40 then it will call
+// for $bda which defaults to 10px.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin diamond-shield($bd, $color, $bda: 10px) {
+	width: 0;
+	height: 0;
+	border: $bd solid transparent;
+	@if $bd < 40 {
+		border-bottom: $bda solid $color;
+	} @else {
+		border-bottom: $bd - 30 solid $color;
+	}
+	position: relative;
+	top: -$bd;
+	&:after {
+		content: '';
+		position: absolute;
+		left: -$bd;
+		@if $bd < 40 {
+			top: $bda;
+		} @else {
+			top: $bd - 30;
+		}
+		width: 0;
+		height: 0;
+		border: $bd solid transparent;
+		border-top: $bd + 20 solid $color;
+	}
+}
+
+@mixin flex {
+	display: -webkit-box;
+  	display: -moz-box;
+  	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// kept here just in case of prefix later
+// currently supports
+// opera
+// chrome
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin flex-box($value) {
+	flex: $value;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// Property accepts:
+// row, row-reverse, column, & column-reverse
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin flex-direction($value) {
+	-webkit-flex-direction: $value;
+	-moz-flex-direction: $value;
+	-ms-flex-direction: $value;
+	-o-flex-direction: $value;
+	flex-direction: $value;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// Property accepts:
+// nowrap - all in one line
+// wrap - puts it in separate lines
+// wrap-reverse - also multiline
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin flex-wrap($value) {
+	@each $pf in -webkit-,'' {
+		#{$pf}flex-wrap: $value;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Regular declaration of the @font-face
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal ) {
+  @font-face {
+    font-family: $font-family;
+    src: url('#{$file-path}.eot');
+    src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+         url('#{$file-path}.woff') format('woff'),
+         url('#{$file-path}.ttf') format('truetype'),
+         url('fonts/opensans_regular_macroman/OpenSans-Regular-webfont.svg#open_sanslight') format('svg');
+	    font-weight: $weight;
+	    font-style: $style;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// If you plan to use data uri in the font-face. Need Compass.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin font-face-inline($font-family, $file-path, $weight: normal, $style: normal ) {
+  @font-face {
+      font-family: $font-family;
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+           url('#{$file-path}.svg##{$font-family}') format('svg'),
+           inline-font-files('#{$file-path}.woff',woff),
+           inline-font-files('#{$file-path}.ttf',truetype);
+      font-weight: $weight;
+      font-style: $style;
+  }
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// gradient 2.0
+// instead of having a limit of 4 colors, now there is no limit!!
+// you just need $pos and $array
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin gradient($pos, $array, $img: null, $repeat: no-repeat) {
+	$posA: null; 
+	$posB: null;
+	$webarray: null;
+	
+
+	@if $pos == top  {
+		$posA: left top; 
+		$posB: left bottom;
+	}
+
+	@if $pos == left {
+		$posA: left top; 
+		$posB: right top;
+	}
+
+	@if $pos == adown {
+		$pos: -45deg;
+		$posA: left top; 
+		$posB: right bottom;
+	}
+
+	@if $pos == aup {
+		$pos: 45deg;
+		$posA: left bottom; 
+		$posB: right top;
+	}
+
+	@each $web in $array {
+		$webarray: append( $webarray, color-stop($web), comma );
+	}
+
+	$value: $pos, $array;
+	$web: $posA, $posB, $webarray;
+
+	@if $pos == radial {
+		$pos: center;
+		$cir: ellipse cover;
+		$posA: center center;
+		$posB: center center;
+
+		$value: $pos, $cir, $array;
+		$web: $posA, $posB, $webarray;
+	}
+
+	// solid color
+	$fl: nth($array,1);
+
+	@if type-of($fl) == list {
+		background: nth($fl,1);
+	}
+
+	@include gradient-prefix($value,$web,$img);
+	background-repeat: $repeat;
+	position: relative; // makes pie work on IE browsers
+}
+
+@mixin gradient-prefix($value,$web,$img) {
+	$dir: null;
+	$prefixes: null;
+
+	@if nth($value,1) == center {
+		$dir: radial;
+		$prefixes: (-moz-radial-, -webkit-,-webkit-radial-, -o-radial-, -ms-radial-, radial-);
+	}
+	@else {
+		$dir: linear;
+		$prefixes: (-moz-linear-, -webkit-, -webkit-linear-, -o-linear-, -ms-linear-, linear- );
+	}
+
+	@each $prefix in $prefixes {
+		@if $prefix == linear- or $prefix == radial- {
+			$pie: '', -pie-;
+
+			@each $pi in $pie {
+				@if $prefix == linear- {
+					@if $img == null {
+						#{$pi}background: #{$prefix}gradient($value);
+					}
+					@else {
+						#{$pi}background: url('#{$img}'), #{$prefix}gradient($value);
+					}
+				}
+
+				@else {
+					$hm: 'ellipse at center';
+					$remove: remove($value, center);
+					$new: replace-nth($remove, 1, null);
+					$nn: join( unquote($hm), $new, comma);
+					@if $img == null {
+						#{$pi}background: #{$prefix}gradient($nn);
+					}
+					@else {
+						#{$pi}background: url('#{$img}'), #{$prefix}gradient($nn);
+					}
+				}
+			}
+		}
+		@else if $prefix == -webkit- {
+			// add posA and posB
+			@if $img == null {
+				background: #{$prefix}gradient($dir, $web);	
+			}
+			@else {
+				background: url('#{$img}'), #{$prefix}gradient($dir, $web);
+			}
+		}
+		@else {
+			@if $img == null {
+				background: #{$prefix}gradient($value);
+			}
+			@else {
+				background: url('#{$img}'), #{$prefix}gradient($value);
+			}
+		}
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// For compass there is a headings() mixin that aims at all or specific h tags.
+// like only h3, h1-h4, or all. This is my version of that.
+// Ex
+// @include h() || @include h(1)
+// outputs all h tags
+
+// @include h(2)
+// outputs h1, h2
+
+// @include h(2,3)
+// outputs h2 through h3
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin h($s: 1, $n: $s) {
+	// numbers are the same
+	@if $s == $n {
+		@if $n > 1 {
+			$s: 1;
+			@for $i from $s through $n {
+				h#{$i} {
+					@content;
+				}
+			}
+		}
+		@else {
+			$n: 6;
+			@for $i from $s through $n {
+				h#{$i} {
+					@content;
+				}
+			}
+		}
+	}
+	// numbers are not the same
+	@else {
+		@for $i from $s through $n {
+			h#{$i} {
+				@content;
+			}
+		}
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin heart($width, $color) {
+	height: $width*.9;
+	position: relative;
+	width: $width*2;
+	&:before {
+		position: absolute;
+	    content: "";
+	    left: $width/2;
+	    top: 0;
+	    width: $width/2;
+	    height: $width*.8;
+	    background: $color;
+	    @include border-radius($width/2 $width/2 0 0);
+	    @include transform(rotate(-45deg));
+	    @include transform-origin(0 100%);
+	}
+	&:after {
+		@extend :before;
+		left: 0;
+        @include transform(rotate(45deg));
+    	@include transform-origin(100% 100%);
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin hexagon($size, $color) {
+	width: $size;
+	height: $size*.55;
+	background: $color;
+	position: relative;
+	&:before {
+		content: "";
+		position: absolute;
+		top: -#{$size*0.25};
+		left: 0;
+		width: 0;
+		height: 0;
+		border-left: $size/2 solid transparent;
+		border-right: $size/2 solid transparent;
+		border-bottom: #{$size*0.25} solid $color;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: -#{$size*0.25};
+		left: 0;
+		width: 0;
+		height: 0;
+		border-left: $size/2 solid transparent;
+		border-right: $size/2 solid transparent;
+		border-top: #{$size*0.25} solid $color;
+	}
+}
+
+@mixin hide {
+	display: none;
+	visibility: hidden;
+}
+
+@mixin icon-home($color, $size) {
+	font-size: $size;
+	height: 1em;
+	width: 0.5em;
+	margin-top: 1em;
+	margin-left: -1em;
+	border-bottom: none;
+	border-right: 1.5em solid $color;
+	border-left: 1.5em solid $color;
+	border-top: 1.4em solid $color;
+	position: relative;
+	&:before {
+		border-left: 2.4em solid transparent;
+		position: absolute;
+		content: "";
+		top: -2.8em;
+		right: -2.1em;
+		width: 0em;
+		height: 0em;
+		border-right: 2.4em solid transparent;
+		border-bottom: 1.5em solid $color;
+	}
+}
+
+@mixin icon-ribbon($color, $size, $dir) {
+	height: 0;
+	font-size: $size;
+	position: relative;
+	width: 0px;
+	@if $dir == up {
+		@include transform(rotate(180deg));
+	}
+	@if $dir == right {
+		@include transform(rotate(-90deg));
+	}
+	@if $dir == down {
+		@include transform(rotate(0deg));
+	}
+	@if $dir == left {
+		@include transform(rotate(90deg));
+	}
+	&:before {
+		left: -0.3em;
+		top: -1em;
+		position: absolute;
+		content: "";
+		height: 2em;
+		border-bottom: 0.7em solid transparent;
+		border-right: 1em solid $color;
+	}
+	&:after {
+		left: -0.7em;
+		top: -1em;
+		position: absolute;
+		content: "";
+		height: 2em;
+		border-bottom: 0.7em solid transparent;
+		border-left: 1em solid $color;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// IE
+// The ie mixin aims at specific versions of ie. Just enter the version number. This only works if there is 
+// an html tag with a class 'ie' and version number. 
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin ie($ver) {
+	$warning: 'Can only target IE versions 7,8, and 9';
+	@if type-of($ver) == number {
+		@if $ver != 7 and $ver != 8 and $ver != 9 {
+			@warn $warning;
+		} 
+		@else {
+			html.ie#{$ver} & {
+				@content;
+			}
+		}
+	}
+
+	@else if type-of($ver) == list {
+		@each $v in $ver {
+			@if $v != 7 and $v != 8 and $v != 9 {
+				@warn $warning;
+			} 
+			@else {
+				html.ie#{$v} & {
+					@content;
+				}
+			}
+		}
+	}
+
+	@else {
+		@warn 'Must have at least one number in parameter.';
+	}
+}
+
+@mixin ie-inline {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Not perfect yet
+// The 2 circles dont touch in the middle in all width sizes
+// Maybe change the width to the width of the :before and
+// :after will start at the width of the :before.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin infinity($size, $color, $bd: 20px) {
+    height: $size + 40;background: #ccc;
+	position: relative;
+	//width: $size*2.5+$bd*2.55;
+	width: $size*2+$bd*7; 
+    &:before {
+    	content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: $size;
+	    height: $size;
+		border: $bd solid $color;
+    	@include border-radius($size - 10 $size - 10 0 $size - 10);
+    	@include transform(rotate(-45deg));
+    }
+    &:after {
+    	@extend :before;
+    	left: auto;
+    	right: 0;
+	    @include border-radius($size - 10 $size - 10 $size - 10 0);
+    	@include transform(rotate(45deg));
+    }
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// EX
+// @include keyframe(myFrame) { from{...} to{...} }
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin keyframe($name) {
+	@keyframes $name {
+		@content;
+	}
+	@-moz-keyframes $name {
+		@content;
+	}
+	@-webkit-keyframes $name {
+		@content;
+	}
+	@-o-keyframes $name {
+		@content;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// A simple page loader animation. 
+// Just create a div, @include this and loaderanimate, done.
+// Loaderanimate is a keyframe mixin so call outside codeblock.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin loader($size, $color) {
+	border: $size/10 solid rgba($color,.15);
+	height: $size;
+	margin: 0 auto;
+	position: relative;
+	width: $size;
+	@include animation(rotation .6s infinite linear);
+	@include border-radius(100%);
+	&:before {
+		border-bottom: $size/10 solid transparent;
+		border-left: $size/10 solid transparent;
+		border-right: $size/10 solid transparent;
+		border-top: $size/10 solid rgba($color,.8);
+		content: "";
+		display: block;
+		height: 100%;
+		width: 100%;
+		@include border-radius(100%);
+		@include posa(-#{$size/10},n,n,-#{$size/10});
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// This needs to be called with loader mixin
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin loaderanimate {
+	@include keyframe(rotation) {
+		from {
+			@include transform(rotate(0deg));
+		}
+		to {
+			@include transform(rotate(359deg));
+		}
+	}
+}
+
+@mixin mediaq($size) {
+	@if $size == ltab{
+		@media screen and (max-width: $wid) {
+			@content;
+		}
+	}
+	@else if $size == stab{
+		@media screen and (max-width: 800px) {
+			@content;
+		}
+	}
+	@else if $size == ipad{
+		@media screen and (max-width: 768px) {
+			@content;
+		}
+	}
+	@else if $size == phone{
+		@media screen and (max-width: 599px) {
+			@content;
+		}
+	}
+	@else {
+		@media screen and (max-width: $size) {
+			@content;
+		}
+	}
+}
+
+@mixin no-filter {
+	filter: none;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
+@mixin no-gradient {
+	background: none;
+	-pie-background: none;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// Unfortunately the borders need to have a color since there is a background-color.
+// The border color, aka $bg, needs to be the same as your background color this octagon
+// is on top of. 
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin octagon($size, $color, $bg) {
+	width: $size;
+	height: $size;
+	background: $color;
+	position: relative;
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-bottom: $size*.29 solid $color;
+		border-left: $size*.29 solid $bg;
+		border-right: $size*.29 solid $bg;
+		width: $size*.42;
+		height: 0;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		border-top: $size*.29 solid $color;
+		border-left: $size*.29 solid $bg;
+		border-right: $size*.29 solid $bg;
+		width: $size*.42;
+		height: 0;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Enter a digit from 0 to 10.
+// Supports decimals.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin opacity($value, $opac: true, $filter: true) {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*10})";
+	filter: alpha(opacity = #{$value*10});
+	opacity: $value/10;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin oval($width, $color, $height: $width/2, $bdrz: 50%) {
+	width: $width;
+	height: $height;
+	background: $color;
+	@include border-radius($bdrz);
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin pacman($size, $color) {
+	width: 0px;
+	height: 0px;
+	border-right: $size solid transparent;
+	border-top: $size solid $color;
+	border-left: $size solid $color;
+	border-bottom: $size solid $color;
+	border-top-left-radius: $size;
+	border-top-right-radius: $size;
+	border-bottom-left-radius: $size;
+	border-bottom-right-radius: $size;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin parallelogram($width, $color) {
+	background: $color;
+	height: $width - 50;
+	width: $width;
+	@include transform(skew(20deg));
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// 8 Point Star Burst
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin pb8($size, $color, $deg: 20) {
+    background: $color;
+    width: $size;
+    height: $size;
+    position: relative;
+    text-align: center;
+    @include transform(rotate(#{$deg}deg));
+	&:before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: $size;
+	    width: $size;
+	    background: $color;
+	    @include transform(rotate(#{$deg+115}deg));
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// 12 Point Star Burst
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin pb12($size, $color, $deg: 30) {
+    background: $color;
+    width: $size;
+    height: $size;
+    position: relative;
+    text-align: center;
+	&:before {
+		content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    height: $size;
+	    width: $size;
+	    background: $color;
+		@include transform(rotate(#{$deg}deg));
+	}
+	&:after {
+		@extend :before;
+	    @include transform(rotate(#{$deg*2}deg));
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin pentagon($size, $color) {
+	position: relative;
+    width: $size;
+    border-width: $size - 4 $size/3 0;
+    border-style: solid;
+    border-color: $color transparent;
+    &:before {
+	    content: "";
+	    position: absolute;
+	    height: 0;
+	    width: 0;
+	    top: -#{$size*1.64};
+	    left: -#{$size*0.335};
+	    @if $size >= 225 {
+		    border-width: 2px $size*.835 $size*.648;
+		} @else {
+			border-width: 5px $size*.835 $size*.648;
+		}
+	    border-style: solid;
+	    border-color: transparent transparent $color;
+	}
+}
+
+@mixin placeholder($phColor, $phFamily: inherit, $phSize: inherit, $moz: true, $webkit: true) {
+	@if $moz { 
+		&:-moz-placeholder {
+			color: $phColor;
+			font: {
+				family: $phFamily;
+				size: $phSize;
+			}
+		}
+	}
+	@if $webkit { 
+		&::-webkit-input-placeholder {
+			color: $phColor;
+			font: {
+				family: $phFamily;
+				size: $phSize;
+			}
+		}
+	}
+}
+
+@mixin posa($top, $right, $bottom, $left) {
+	@if $bottom == 'n' {
+		bottom: auto;
+	} @else {
+		bottom: $bottom;
+	}	
+	@if $left == 'n' {
+		left: auto;
+	} @else {
+		left: $left;
+	}
+	position: absolute;
+	@if $right == 'n' {
+		right: auto;
+	} @else {
+		right: $right;
+	}
+	@if $top == 'n' {
+		top: auto;
+	} @else {
+		top: $top;
+	}
+}
+
+@mixin show {
+	display: block;
+	visibility: visible;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// This was tricky!!! The object is to scale the five point star to any size.
+// Its recommended that $deg stays at 35 for now. Although, I do not anticipate this
+// value will change.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin star-five($bd, $color, $deg: 35) {
+	margin: $bd/1.5 0;
+	position: relative;
+	display: block;
+	color: $color;
+	width: 0px;
+	height: 0px;
+	border-right:  $bd solid transparent;
+	border-bottom: $bd*.7  solid $color;
+	border-left:   $bd solid transparent;
+	@include transform(rotate(#{$deg}deg));
+	&:before {
+	   border-bottom: $bd*.8 solid $color;
+	   border-left: $bd*.3 solid transparent;
+	   border-right: $bd*.3 solid transparent;
+	   position: absolute;
+	   height: 0;
+	   width: 0;
+	   top: -$bd*.45;
+	   left: -$bd*.65;
+	   display: block;
+	   content: '';
+	   @include transform(rotate(-#{$deg}deg));
+	}
+	&:after {
+	   position: absolute;
+	   display: block;
+	   color: $color;
+	   top: $bd*.03;
+	   left: -$bd*1.05;
+	   width: 0px;
+	   height: 0px;
+	   border-right: $bd solid transparent;
+	   border-bottom: $bd*.7 solid $color;
+	   border-left: $bd solid transparent;
+	   @include transform(rotate(-#{$deg*2}deg));
+	   content: '';
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin star-six($bd, $color) {
+	width: 0;
+	height: 0;
+	border-left: $bd/2 solid transparent;
+	border-right: $bd/2 solid transparent;
+	border-bottom: $bd solid $color;
+	position: relative;
+	&:after {
+		width: 0;
+		height: 0;
+		border-left: $bd/2 solid transparent;
+		border-right: $bd/2 solid transparent;
+		border-top: $bd solid $color;
+		position: absolute;
+		content: "";
+		top: 30px;
+		left: -50px;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// NOTE
+// Tried to make this as flexible as possible.
+// The arrow should always be centered vertically.
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin talkbubble($pad, $radius, $color, $width: auto, $height: auto, $border: 26px) {
+	display: inline-block;
+	padding: $pad;
+	background: $color;
+	position: relative;
+	width: $width;
+	height: $height;
+	@include border-radius($radius);
+	&:before {
+	   content:"";
+	   position: absolute;
+	   right: 100%;
+	   top: 50%;
+	   width: 0;
+	   height: 0;
+	   border-top: $border/2 solid transparent;
+	   border-right: $border solid $color;
+	   border-bottom: $border/2 solid transparent;
+	   margin-top: -$border/2;
+	}
+}
+
+@mixin transform($value) {
+	-webkit-transform: $value;
+	-moz-transform: $value;
+	-o-transform: $value;
+	-ms-transform: $value;
+	transform: $value;
+}
+
+@mixin transform-origin($value) {
+	-webkit-transform-origin: $value;
+	-moz-transform-origin: $value;
+	-o-transform-origin: $value;
+	-ms-transform-origin: $value;
+	transform-origin: $value;
+}
+
+@mixin transition($value) {
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-o-transition: $value;
+	-ms-transition: $value;
+	transition: $value;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin trapezoid($size, $color) {
+	border-bottom: $size solid $color;
+	border-left: $size/2 solid transparent;
+	border-right: $size/2 solid transparent;
+	height: 0;
+	width: $size;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width, direction and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin triangle($width, $dir, $color) {
+	@if $dir == up {
+		width: 0; 
+		height: 0; 
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-bottom: $width solid $color;
+	}
+	@if $dir == right {
+		width: 0; 
+		height: 0; 
+		border-top: $width solid transparent;
+		border-bottom: $width solid transparent;
+		border-left: $width solid $color;
+	}
+	@if $dir == down {
+		width: 0; 
+		height: 0; 
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-top: $width solid $color;
+	}
+	@if $dir == left {
+		width: 0; 
+		height: 0; 
+		border-bottom: $width solid transparent;
+		border-top: $width solid transparent;
+		border-right: $width solid $color;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Declare a width, direction and color
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@mixin triangle-corner($width, $dir, $color) {
+	@if $dir == topLeft {
+		width: 0; 
+		height: 0; 
+		border-top: $width solid $color;
+		border-right: $width solid transparent;
+	}
+	@if $dir == topRight {
+		width: 0; 
+		height: 0; 
+		border-top: $width solid $color;
+		border-left: $width solid transparent;
+	}
+	@if $dir == bottomLeft {
+		width: 0; 
+		height: 0; 
+		border-right: $width solid transparent;
+		border-bottom: $width solid $color;
+	}
+	@if $dir == bottomRight {
+		width: 0; 
+		height: 0; 
+		border-bottom: $width solid $color;
+		border-left: $width solid transparent;
+	}
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::: Functions
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Converts pixels to ems
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function pxtoem($target, $context: 16){
+    @return ($target/$context)+0em;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Convert em to px
+// EX
+// target: 1, context: 16
+// 1*16 = 16px
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function emtopx($target, $context: 16){
+	@return ($target*$context)+0px;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// WARNING: this only works on Sass 3.3 and greater
+// Turns dashed strings to camel case
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function camelize($string, $capitalize-first: false) {
+  $new-string: if(is-quoted($string), "", unquote(""));
+  $position: 1;
+  $found-position: str-index($string, "-");
+  $first-segment: true;
+  @while $found-position {
+    $segment: str-slice($string, $position, $found-position - 1);
+    $new-string: $new-string +
+                 if($first-segment
+                      and $capitalize-first
+                      or not $first-segment,
+                    capitalize($segment),
+                    $segment);
+    $first-segment: false;
+    $position: $found-position + 1;
+    $new-found-position: str-index(str-slice($string, $position), "-");
+    $found-position: if($new-found-position, $found-position + $new-found-position, null);
+  }
+  @return $new-string +
+          if($first-segment and $capitalize-first or not $first-segment,
+             capitalize(str-slice($string, $position)),
+             str-slice($string, $position));
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// WARNING: this only works on Sass 3.3 and greater
+// capitalize first letter
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function capitalize($string) {
+	@return to-upper-case( str-slice($string, 1, 1) ) + str-slice($string, 2);
+}
+
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// This function evenly divides the columns.
+// Even though the variables are defined here, they can still be
+// redefined elsewhere. 
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+$grid-columns: 12;
+$grid-width: 100%;
+
+@function ccw($cols) {
+	@return (($grid-width / $grid-columns) * $cols / $grid-width) * 100%;
+}
+
+@function calculate-column-width($cols) {
+	@return (($grid-width / $grid-columns) * $cols / $grid-width) * 100%;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// explodes string to an array
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function explode($string, $dem) {
+	$array: null;
+	$sum: str-length($string);
+
+	@for $i from 1 through $sum
+	{
+		$str: str-index($string, $dem); // 2
+		
+		@if str-length($string) == 1 {
+			$array: append($array,$string);
+			$string: '';
+		}
+
+		@if type-of($str) == number {
+			$each: str-slice($string,0,($str - 1));
+			$array: append($array,$each);
+			$string: str-slice($string,($str + 1), $sum);
+		}
+	}
+
+	@return $array;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// implodes array to a string
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+@function implode($l)
+{
+	$string: '';
+
+	@each $s in $l {
+		$string: str-insert($string,$s,1);
+	}
+
+	@return $string;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Change color of text based on background
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function text-contrast($background) {
+	@if lightness($background) < 50% {
+		@return lighten($background, 70%);
+	}
+	@else {
+		@return darken($background, 90%); 
+	}
+}
+
+
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// grabs first value in array
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function first($list) {
+	@return nth($list, 1);
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Grabs last value in array
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function last($list) {
+ 	@return nth($list, length($list));
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// since there is already a built-in function called index()
+// that returns the first index, this function will
+// return an index (number) of the last value in the array
+// ex
+// $array: (a,b,c,d,e,f);
+// $num: last-index($array,c); // will output 3
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function last-index($list, $value) {
+	@for $i from length($list)*-1 through -1 {
+    	@if nth($list, abs($i)) == $value {
+    		@return abs($i);
+    	}
+  	}
+
+  	@return null;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// replace a value in a list. 
+// ex 
+// $list: a, b, r, a, c a, d a, b, r, a;
+// $new-list: replace($list, a, u);       // u, b, r, u, c a, d
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function replace($list, $old-value, $new-value, $recursive: false) {
+	$result: ();
+
+  	@for $i from 1 through length($list) {
+    	@if type-of(nth($list, $i)) == list and $recursive {
+      		$result: append($result, replace(nth($list, $i), $old-value, $new-value, $recursive));
+    	}
+
+    	@else {
+      		@if nth($list, $i) == $old-value {
+        		$result: append($result, $new-value);
+      		}
+
+      		@else {
+        		$result: append($result, nth($list, $i));
+      		}
+    	}
+  	}
+
+	@return $result;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// the same as replace() but use index number
+// ex
+// $list: a, b, z, d, e, f;
+// $new-list: replace($list, 3, c);       // a, b, c, d, e, f;
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function replace-nth($list, $index, $value) {
+	$result: null;
+	  
+	@if type-of($index) != number {
+		@warn "$index: #{quote($index)} is not a number for `replace-nth`.";
+	}
+
+	@else if $index == 0 {
+		@warn "List index 0 must be a non-zero integer for `replace-nth`.";
+	}
+	  
+	@else if abs($index) > length($list) {
+		@warn "List index is #{$index} but list is only #{length($list)} item long for `replace-nth`.";
+	}
+
+	@else {
+		$result: ();
+		$index: if($index < 0, length($list) + $index + 1, $index);  
+
+		@for $i from 1 through length($list) {
+		  	@if $i == $index {
+		    	$result: append($result, $value);
+		  	}
+
+		  	@else {
+		    	$result: append($result, nth($list, $i));
+		  	}
+		}
+	}
+
+	@return $result;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// $list: a, b z, c, z, d, z, e, f;
+// $new-list: remove($list, z);       // a, b z, c, d, e, f;
+// $new-list: remove($list, z, true); // a, b, c, d, e, f
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function remove($list, $value, $recursive: false) {
+	$result: ();
+
+	@for $i from 1 through length($list) {
+		@if type-of(nth($list, $i)) == list and $recursive {
+			$result: append($result, remove(nth($list, $i), $value, $recursive));
+		}
+
+		@else if nth($list, $i) != $value {
+			$result: append($result, nth($list, $i));
+		}
+	}
+
+	@return $result;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Removes element from list based off nth.
+// Ex
+// $list: a, b, z, c, d, e, f;
+// $new-list: remove-nth($list,3);   
+// outputs
+// a, b, c, d, e, f
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function remove-nth($list, $index) {
+	$result: null;
+	    
+	@if type-of($index) != number {
+		@warn "$index: #{quote($index)} is not a number for `remove-nth`.";
+	}
+
+	@else if $index == 0 {
+		@warn "List index 0 must be a non-zero integer for `remove-nth`.";
+	}
+
+	@else if abs($index) > length($list) {
+		@warn "List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.";
+	}
+
+	@else {
+		$result: ();
+		$index: if($index < 0, length($list) + $index + 1, $index);  
+
+		@for $i from 1 through length($list) {
+			@if $i != $index {
+		    	$result: append($result, nth($list, $i));
+		  	}
+		}
+	}
+	    
+	@return $result;
+}
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// Reverses everything in array. Just pass in an array into the reverse().
+// Ex
+// $array: 1,2,3,4,5; 
+// outputs
+// $array: 5,4,3,2,1
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+@function reverse($array) {
+	$narray: ();
+
+	@each $each in $array {
+		$narray: prepend($narray,$each);
+	}	
+
+	@return $narray;	
+}
+
+
+@function prepend($list, $value) {
+    @return join($value, $list);
+}

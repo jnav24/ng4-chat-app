@@ -6,15 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  labelIsSelected: boolean[] = [
+    false,
+    false
+  ];
 
-  	constructor() { }
+	constructor() { }
 
-  	ngOnInit() {
-  	}
-
-  	logUserIn() {
+	ngOnInit() {
 	}
 
-	logUserOut() {
-	}
+	logUserIn() {
+  }
+
+  logUserOut() {
+  }
+
+  selectLabel(index: number) {
+    this.labelIsSelected[index] = true;
+  }
 }
