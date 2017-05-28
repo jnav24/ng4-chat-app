@@ -15,11 +15,13 @@ import { SignInService } from './sign-in/sign-in.service'
 import { appRouter } from './app.router';
 import {AngularFireDatabase} from "angularfire2/database/database";
 import {AngularFireAuth} from "angularfire2/auth/auth";
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent
+    SignInComponent,
+    ChatComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
