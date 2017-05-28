@@ -2,35 +2,39 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
 import firebaseConfig from './config/env';
 import { AngularFireModule } from 'angularfire2';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-
-const appRoutes: Routes  = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '**', component: LoginComponent },
-];
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MdInputModule, MdRippleModule, MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignInService } from './sign-in/sign-in.service'
+import { appRouter } from './app.router';
+import {AngularFireDatabase} from "angularfire2/database/database";
+import {AngularFireAuth} from "angularfire2/auth/auth";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent
+    SignInComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig),
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    MdButtonModule,
+    MdCardModule,
+    MdInputModule,
+    MdMenuModule,
+    MdRippleModule,
+    RouterModule.forRoot(appRouter)
   ],
-  providers: [],
+  providers: [SignInService, AngularFireDatabase, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

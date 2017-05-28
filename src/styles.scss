@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 @import './assets/base/prefixMixies';
 @import './assets/base/normalize';
+@import './assets/layout/form';
 
 body, html {
 	font: {
