@@ -1,0 +1,40 @@
+$primary: #00BCD4;
+
+.container {
+  background: $primary;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+}
+
+.form {
+  background: #fff;
+  // box-shadow: 0 10px 20px rgba(#000, 0.2);
+  font-size: 14px;
+  margin: 20% auto 0;
+  padding: 20px;
+  text-align: left;
+  width: 250px;
+
+  button {
+    background: $primary;
+    color: #fff;
+    font-weight: 300;
+  }
+}
+
+.copy {
+  color: #fff;
+  font-size: 13px;
+}
+
+.mat-focused .mat-input-placeholder {
+  color: $primary;
+}
+
+.mat-option.mat-selected.mat-primary,.mat-primary .mat-option.mat-selected{
+  color: #fff;
+}

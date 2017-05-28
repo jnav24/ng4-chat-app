@@ -1,0 +1,45 @@
+<div class="container">
+  <!--<p *ngFor="let item of items">{{ item.name }}</p>-->
+
+  <div class="form" *ngIf="isLogin">
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Email">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Password" type="password">
+    </md-input-container>
+
+    <button md-raised-button class="fw-full">Login</button>
+  </div>
+
+
+  <div class="form" *ngIf="!isLogin">
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="First Name" [(ngModel)]="reg_first_name">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Last Name" [(ngModel)]="reg_last_name">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Email" [(ngModel)]="reg_email">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Password" type="password" [(ngModel)]="reg_pass">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Confirm Password" type="password" [(ngModel)]="reg_confirm_pass">
+    </md-input-container>
+
+    <button md-raised-button class="fw-full" (click)="registerUser()">Sign Up</button>
+  </div>
+
+  <p class="copy">
+    <span *ngIf="!isLogin">Already have an account? <a routerLink="/login">Login</a></span>
+    <span *ngIf="isLogin">Need an account? <a routerLink="/register">Sign Up</a></span>
+  </p>
+</div>
