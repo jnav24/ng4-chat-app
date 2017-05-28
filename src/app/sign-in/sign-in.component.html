@@ -2,19 +2,25 @@
   <!--<p *ngFor="let item of items">{{ item.name }}</p>-->
 
   <div class="form" *ngIf="isLogin">
+    <div class="error" *ngIf="error.length">
+      {{ error }}
+    </div>
     <md-input-container class="fw-full">
-      <input mdInput placeholder="Email">
+      <input mdInput placeholder="Email" [(ngModel)]="log_email">
     </md-input-container>
 
     <md-input-container class="fw-full">
-      <input mdInput placeholder="Password" type="password">
+      <input mdInput placeholder="Password" type="password" [(ngModel)]="log_pass">
     </md-input-container>
 
-    <button md-raised-button class="fw-full">Login</button>
+    <button md-raised-button class="fw-full" (click)="login()">Login</button>
   </div>
 
 
   <div class="form" *ngIf="!isLogin">
+    <div class="error" *ngIf="error.length">
+      {{ error }}
+    </div>
     <md-input-container class="fw-full">
       <input mdInput placeholder="First Name" [(ngModel)]="reg_first_name">
     </md-input-container>

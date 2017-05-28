@@ -16,12 +16,17 @@ export class SignInService {
     // return this.af.list('/users');
   }
 
+  addUser(user) {
+    const users = this.af.list('/users');
+    users.push(user);
+  }
+
   createNewUser(email, pass) {
-    this.auth.auth.createUserWithEmailAndPassword(email, pass)
+    return this.auth.auth.createUserWithEmailAndPassword(email, pass);
   }
 
   loginUser(email, pass) {
-    this.auth.auth.signInWithEmailAndPassword(email, pass);
+    return this.auth.auth.signInWithEmailAndPassword(email, pass);
   }
 
   logoutUser() {
