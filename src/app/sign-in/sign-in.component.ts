@@ -24,18 +24,18 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.route.snapshot.url;
-    console.log(this.route);
     this.isLogin = (!this.url.length || this.url[0].path === 'login');
     // this.signInService.getAllItems().do(console.log).subscribe(items => this.items = items);
+    this.signInService.user.subscribe(user => {
+        this.redirectUser(user);
+    });
   }
 
   registerUser() {
     this.signInService.createNewUser(this.reg_email, this.reg_pass)
         .then(auth => {
           this.signInService.addUser(new Users(this.reg_email, this.reg_first_name, this.reg_last_name));
-          if (typeof auth.uid !== 'undefined') {
-            this.router.navigate(['chat', auth.uid]);
-          }
+            this.redirectUser(auth);
         })
         .catch(error => {
           this.error = error.message;
@@ -45,12 +45,16 @@ export class SignInComponent implements OnInit {
   login() {
     this.signInService.loginUser(this.log_email, this.log_pass)
         .then(auth => {
-          if (typeof auth.uid !== 'undefined') {
-            this.router.navigate(['chat', auth.uid]);
-          }
+            this.redirectUser(auth);
         })
         .catch(error => {
           this.error = error.message;
         });
+  }
+
+  private redirectUser(user) {
+      if (typeof user.uid !== 'undefined') {
+          this.router.navigate(['chat', user.uid]);
+      }
   }
 }
