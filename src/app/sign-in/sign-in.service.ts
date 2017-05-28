@@ -28,8 +28,4 @@ export class SignInService {
   loginUser(email, pass) {
     return this.auth.auth.signInWithEmailAndPassword(email, pass);
   }
-
-  logoutUser() {
-    this.auth.auth.signOut();
-  }
 }

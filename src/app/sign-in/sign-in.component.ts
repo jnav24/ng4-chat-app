@@ -53,7 +53,7 @@ export class SignInComponent implements OnInit {
   }
 
   private redirectUser(user) {
-      if (typeof user.uid !== 'undefined') {
+      if (user !== null && typeof user.uid !== 'undefined') {
           this.router.navigate(['chat', user.uid]);
       }
   }

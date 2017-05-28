@@ -16,6 +16,7 @@ import { appRouter } from './app.router';
 import {AngularFireDatabase} from "angularfire2/database/database";
 import {AngularFireAuth} from "angularfire2/auth/auth";
 import { ChatComponent } from './chat/chat.component';
+import {ChatService} from "./chat/chat.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,10 @@ import { ChatComponent } from './chat/chat.component';
     MdRippleModule,
     RouterModule.forRoot(appRouter)
   ],
-  providers: [SignInService, AngularFireDatabase, AngularFireAuth],
+  providers: [
+    ChatService,
+    SignInService,
+    AngularFireDatabase, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
