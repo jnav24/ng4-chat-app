@@ -23,6 +23,10 @@ $primary: #00BCD4;
     background: $primary;
     color: #fff;
     font-weight: 300;
+
+    &.disabled {
+      background: rgba(#ccc, 0.4);
+    }
   }
 }
 

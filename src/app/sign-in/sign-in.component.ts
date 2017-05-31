@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SignInService } from './sign-in.service';
 import { Users } from '../common/models/users.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,8 +12,8 @@ import { Users } from '../common/models/users.model';
 export class SignInComponent implements OnInit {
   error: string = '';
   isLogin: boolean;
-  log_email: string;
-  log_pass: string;
+  log_in: FormGroup;
+  sign_up: FormGroup;
   reg_first_name: string;
   reg_last_name: string;
   reg_email: string;
@@ -20,12 +21,20 @@ export class SignInComponent implements OnInit {
   reg_confirm_pass: string;
   url: any;
 
-  constructor(private route: ActivatedRoute, private signInService: SignInService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private signInService: SignInService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.log_in = this.fb.group({
+        email: ['', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+        password: ['', [Validators.required]]
+    });
+
+    this.sign_up = this.fb.group({
+
+    });
+
     this.url = this.route.snapshot.url;
     this.isLogin = (!this.url.length || this.url[0].path === 'login');
-    // this.signInService.getAllItems().do(console.log).subscribe(items => this.items = items);
     this.signInService.user.subscribe(user => {
         this.redirectUser(user);
     });
@@ -43,13 +52,13 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    this.signInService.loginUser(this.log_email, this.log_pass)
-        .then(auth => {
-            this.redirectUser(auth);
-        })
-        .catch(error => {
-          this.error = error.message;
-        });
+    // this.signInService.loginUser(this.log_in.value.email, this.log_in.value.password)
+    //     .then(auth => {
+    //         this.redirectUser(auth);
+    //     })
+    //     .catch(error => {
+    //       this.error = error.message;
+    //     });
   }
 
   private redirectUser(user) {

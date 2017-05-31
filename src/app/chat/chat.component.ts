@@ -12,7 +12,7 @@ export class ChatComponent implements OnInit {
   constructor(private route: ActivatedRoute, private chatService: ChatService, private router: Router) { }
 
   ngOnInit() {
-    this.chatService.user.do(console.log).subscribe(user => {
+    this.chatService.user.subscribe(user => {
       if (user === null || typeof user.uid === 'undefined') {
         this.router.navigate(['login']);
       }
