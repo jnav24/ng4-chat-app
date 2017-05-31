@@ -14,11 +14,6 @@ export class SignInComponent implements OnInit {
   isLogin: boolean;
   log_in: FormGroup;
   sign_up: FormGroup;
-  reg_first_name: string;
-  reg_last_name: string;
-  reg_email: string;
-  reg_pass: string;
-  reg_confirm_pass: string;
   url: any;
 
   constructor(private route: ActivatedRoute, private signInService: SignInService, private router: Router, private fb: FormBuilder) { }
@@ -30,7 +25,11 @@ export class SignInComponent implements OnInit {
     });
 
     this.sign_up = this.fb.group({
-
+        first_name: ['', [Validators.required, Validators.minLength(3)]],
+        last_name: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(24)]],
+        confirm_password: ['', [Validators.required]],
     });
 
     this.url = this.route.snapshot.url;
@@ -41,9 +40,12 @@ export class SignInComponent implements OnInit {
   }
 
   registerUser() {
-    this.signInService.createNewUser(this.reg_email, this.reg_pass)
+      const email = this.sign_up.value.email;
+      const password = this.sign_up.value.password;
+
+    this.signInService.createNewUser(email, password)
         .then(auth => {
-          this.signInService.addUser(new Users(this.reg_email, this.reg_first_name, this.reg_last_name));
+          this.signInService.addUser(new Users(email, this.sign_up.value.first_name, this.sign_up.value.last_name));
             this.redirectUser(auth);
         })
         .catch(error => {
