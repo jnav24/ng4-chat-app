@@ -1,14 +1,25 @@
-<section>
-  <aside>
-    <img src="assets/images/logo-yak.png" alt="" class="logo">
-    <button (click)="logout()">Sign Out</button>
+<nav>
+  <img src="assets/images/logo-yak.png" alt="" class="logo">
 
-    <ul>
-      <li *ngFor="let user of users">{{ user.first_name }} {{ user.last_name }}</li>
-    </ul>
-  </aside>
 
-  <article>
-    Chat Body
-  </article>
-</section>
+  <div class="profile-container">
+    <svg class="icon icon-user-circle">
+      <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>
+    </svg>
+  </div>
+</nav>
+
+<!--<section>-->
+  <!--<aside>-->
+    <!--<img src="assets/images/logo-yak.png" alt="" class="logo">-->
+    <!--<button (click)="logout()">Sign Out</button>-->
+
+    <!--<ul>-->
+      <!--<li *ngFor="let user of users">{{ user.first_name }} {{ user.last_name }}</li>-->
+    <!--</ul>-->
+  <!--</aside>-->
+
+  <!--<article>-->
+    <!--Chat Body-->
+  <!--</article>-->
+<!--</section>-->

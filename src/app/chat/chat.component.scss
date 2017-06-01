@@ -1,4 +1,27 @@
-$primary: #00BCD4;
+@import '../../assets/base/imports';
+
+nav {
+  background: $primary;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  @include clearfix;
+
+  .logo {
+    height: 40px;
+  }
+
+  .profile-container {
+    float: right;
+    width: 45px;
+
+    svg {
+      fill: #fff;
+      height: 45px;
+      width: 100%;
+    }
+  }
+}
 
 section {
   background: #f1f1f1;
