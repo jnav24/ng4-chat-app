@@ -37,11 +37,21 @@
     </md-input-container>
 
     <md-input-container class="fw-full">
-      <input mdInput placeholder="Password" type="password" formControlName="password">
+      <input mdInput placeholder="Password"
+             type="password"
+             [formGroup]="sign_up"
+             validateConfirm
+             formControlName="password">
     </md-input-container>
 
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="Confirm Password" type="password" formControlName="confirm_password">
+    <md-input-container
+            class="fw-full">
+      <input mdInput placeholder="Confirm Password"
+             validateConfirm
+             type="password"
+             [formGroup]="sign_up"
+             name="confirm_password"
+             formControlName="confirm_password">
     </md-input-container>
 
     <button md-raised-button class="fw-full"

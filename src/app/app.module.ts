@@ -17,12 +17,14 @@ import { AngularFireDatabase } from "angularfire2/database/database";
 import { AngularFireAuth } from "angularfire2/auth/auth";
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from "./chat/chat.service";
+import { ValidateConfirmDirective } from './common/directives/validate-confirm.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    ChatComponent
+    ChatComponent,
+    ValidateConfirmDirective
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),

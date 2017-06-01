@@ -54,13 +54,13 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    // this.signInService.loginUser(this.log_in.value.email, this.log_in.value.password)
-    //     .then(auth => {
-    //         this.redirectUser(auth);
-    //     })
-    //     .catch(error => {
-    //       this.error = error.message;
-    //     });
+    this.signInService.loginUser(this.log_in.value.email, this.log_in.value.password)
+        .then(auth => {
+            this.redirectUser(auth);
+        })
+        .catch(error => {
+          this.error = error.message;
+        });
   }
 
   private redirectUser(user) {
