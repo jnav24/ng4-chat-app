@@ -18,6 +18,7 @@ import { AngularFireAuth } from "angularfire2/auth/auth";
 import { ChatComponent } from './chat/chat.component';
 import { ChatService } from "./chat/chat.service";
 import { ValidateConfirmDirective } from './common/directives/validate-confirm.directive';
+import {UsersService} from "./common/services/users.service";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import { ValidateConfirmDirective } from './common/directives/validate-confirm.d
   providers: [
     ChatService,
     SignInService,
-    AngularFireDatabase, AngularFireAuth],
+    AngularFireDatabase,
+    AngularFireAuth,
+    UsersService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

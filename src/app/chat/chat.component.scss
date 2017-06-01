@@ -1,0 +1,27 @@
+$primary: #00BCD4;
+
+section {
+  background: #f1f1f1;
+  display: flex;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  aside {
+    background: $primary;
+    color: #fff;
+    flex-grow: 1;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  article {
+    flex-grow: 4;
+  }
+}

@@ -13,10 +13,6 @@ export class SignInService {
     this.user = auth.authState;
   }
 
-  getAllItems() {
-    // return this.af.list('/users');
-  }
-
   addUser(user: Users) {
     const users = this.af.list('/users');
     users.push(user);

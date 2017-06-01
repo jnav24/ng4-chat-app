@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ChatService} from "./chat.service";
+import {UsersService} from "../common/services/users.service";
+import { Users } from '../common/models/users.model';
 
 @Component({
   selector: 'app-chat',
@@ -8,8 +10,13 @@ import {ChatService} from "./chat.service";
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  users: Users[];
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService, private router: Router) { }
+  constructor(
+      private route: ActivatedRoute,
+      private chatService: ChatService,
+      private usersService: UsersService,
+      private router: Router) { }
 
   ngOnInit() {
     this.chatService.user.subscribe(user => {
@@ -17,6 +24,7 @@ export class ChatComponent implements OnInit {
         this.router.navigate(['login']);
       }
     });
+    this.getUsersList();
   }
 
   logout() {
@@ -25,5 +33,9 @@ export class ChatComponent implements OnInit {
           this.router.navigate(['login']);
         })
         .catch(error => console.log(error));
+  }
+
+  private getUsersList() {
+    this.usersService.getAllUsers().subscribe(users => this.users = users);
   }
 }

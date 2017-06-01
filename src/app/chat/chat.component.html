@@ -1,5 +1,15 @@
-<p>
-  chat works!
-</p>
+<section>
+  <aside>
+    Chat sidebar1
 
-<button (click)="logout()">Sign Out</button>
+    <button (click)="logout()">Sign Out</button>
+
+    <ul>
+      <li *ngFor="let user of users">{{ user.first_name }} {{ user.last_name }}</li>
+    </ul>
+  </aside>
+
+  <article>
+    Chat Body
+  </article>
+</section>
