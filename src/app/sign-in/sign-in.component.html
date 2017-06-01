@@ -1,63 +1,64 @@
 <div class="container">
-  <!--<p *ngFor="let item of items">{{ item.name }}</p>-->
+  <div class="form-container">
+    <img src="assets/images/logo-yak.png" alt="" class="logo">
 
-  <div class="form" *ngIf="isLogin" [formGroup]="log_in">
-    <div class="error" *ngIf="error.length">
-      {{ error }}
+    <div class="form" *ngIf="isLogin" [formGroup]="log_in">
+      <div class="error" *ngIf="error.length">
+        {{ error }}
+      </div>
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="Email" formControlName="email">
+      </md-input-container>
+
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="Password" type="password" formControlName="password">
+      </md-input-container>
+
+      <button md-raised-button class="fw-full"
+              [ngClass]="{'disabled': !log_in.valid}"
+              (click)="login()"
+              [disabled]="!log_in.valid">Login</button>
     </div>
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="Email" formControlName="email">
-    </md-input-container>
 
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="Password" type="password" formControlName="password">
-    </md-input-container>
+    <div class="form" *ngIf="!isLogin" [formGroup]="sign_up">
+      <div class="error" *ngIf="error.length">
+        {{ error }}
+      </div>
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="First Name" formControlName="first_name">
+      </md-input-container>
 
-    <button md-raised-button class="fw-full"
-            [ngClass]="{'disabled': !log_in.valid}"
-            (click)="login()"
-            [disabled]="!log_in.valid">Login</button>
-  </div>
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="Last Name" formControlName="last_name">
+      </md-input-container>
 
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="Email" formControlName="email">
+      </md-input-container>
 
-  <div class="form" *ngIf="!isLogin" [formGroup]="sign_up">
-    <div class="error" *ngIf="error.length">
-      {{ error }}
+      <md-input-container class="fw-full">
+        <input mdInput placeholder="Password"
+               type="password"
+               [formGroup]="sign_up"
+               validateConfirm
+               formControlName="password">
+      </md-input-container>
+
+      <md-input-container
+              class="fw-full">
+        <input mdInput placeholder="Confirm Password"
+               validateConfirm
+               type="password"
+               [formGroup]="sign_up"
+               name="confirm_password"
+               formControlName="confirm_password">
+      </md-input-container>
+
+      <button md-raised-button class="fw-full"
+              [ngClass]="{'disabled': !sign_up.valid}"
+              [disabled]="!sign_up.valid"
+              (click)="registerUser()">Sign Up</button>
     </div>
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="First Name" formControlName="first_name">
-    </md-input-container>
-
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="Last Name" formControlName="last_name">
-    </md-input-container>
-
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="Email" formControlName="email">
-    </md-input-container>
-
-    <md-input-container class="fw-full">
-      <input mdInput placeholder="Password"
-             type="password"
-             [formGroup]="sign_up"
-             validateConfirm
-             formControlName="password">
-    </md-input-container>
-
-    <md-input-container
-            class="fw-full">
-      <input mdInput placeholder="Confirm Password"
-             validateConfirm
-             type="password"
-             [formGroup]="sign_up"
-             name="confirm_password"
-             formControlName="confirm_password">
-    </md-input-container>
-
-    <button md-raised-button class="fw-full"
-            [ngClass]="{'disabled': !sign_up.valid}"
-            [disabled]="!sign_up.valid"
-            (click)="registerUser()">Sign Up</button>
   </div>
 
   <p class="copy">
