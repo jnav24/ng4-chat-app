@@ -43,6 +43,15 @@ $primary: #00BCD4;
   font-size: 13px;
 }
 
+a {
+  color: darken($primary, 20%);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .error {
   background: #E54D42;
   color: #fff;
