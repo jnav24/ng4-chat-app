@@ -5,6 +5,7 @@ nav {
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
+  @include box-shadow(0 2px 8px rgba(#000, 0.7));
   @include clearfix;
 
   .logo {
@@ -13,12 +14,13 @@ nav {
 
   .profile-container {
     float: right;
-    width: 45px;
+    overflow: hidden;
+    @include circle(45px, $primary);
 
     svg {
       fill: #fff;
       height: 45px;
-      width: 100%;
+      width: 45px;
     }
   }
 }
