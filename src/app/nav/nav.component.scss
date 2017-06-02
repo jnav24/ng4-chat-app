@@ -2,10 +2,12 @@
 
 nav {
   background: $primary;
-  padding: 10px;
-  width: 100%;
   box-sizing: border-box;
-  @include box-shadow(0 2px 8px rgba(#000, 0.7));
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+  @include box-shadow(0 2px 8px rgba(#000, 0.4));
   @include clearfix;
 
   .logo {

@@ -3,16 +3,16 @@
 section {
   background: #f1f1f1;
   display: flex;
-  height: 100%;
-  //left: 0;
-  //position: absolute;
-  //top: 0;
+  height: calc(100% - #{$navHeight});
   width: 100%;
+  z-index: 1;
+  @include posa($navHeight,n,n,0);
 
   aside {
     background: #fff;
     color: #000;
     flex-grow: 1;
+    overflow: auto;
 
     .logo {
       fill: #fff;
@@ -23,6 +23,40 @@ section {
       list-style-type: none;
       margin: 0;
       padding: 0;
+    }
+
+    li {
+      border-bottom: 1px solid #f1f1f1;
+      cursor: pointer;
+      padding: 20px 10px;
+
+      &:last-of-type {
+        border-bottom: 0;
+      }
+
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
+
+    .c_user-info, .profile-container {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .profile-container {
+      $size: 40px;
+      @include circle($size, #fff);
+
+      svg {
+        fill: $primary;
+        height: $size;
+        width: $size;
+      }
+    }
+
+    .c_user-info {
+      margin-left: 5px;
     }
   }
 

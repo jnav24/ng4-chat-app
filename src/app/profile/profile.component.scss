@@ -8,9 +8,10 @@ section {
   box-shadow: -2px 0 8px rgba(#000, 0.2);
   height: 100%;
   position: fixed;
-  right: -#{$container};
+  right: -#{$container+20px};
   top: 0;
   width: $container;
+  z-index: 1000;
   @include transition(0.5s all ease);
 
   &.open {
