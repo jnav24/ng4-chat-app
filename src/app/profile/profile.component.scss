@@ -1,0 +1,60 @@
+@import '../../assets/base/imports';
+
+section {
+  background: #fff;
+  //border-left: 1px solid rgba(#000, 0.1);
+  box-shadow: -2px 0 8px rgba(#000, 0.2);
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+
+  header {
+    background: $primary;
+    padding: 20px 0;
+    text-align: center;
+
+    .profile-container {
+      margin: 0 auto;
+      overflow: hidden;
+      @include circle(150px, $primary);
+    }
+
+    svg {
+      fill: #fff;
+      height: 150px;
+      width: 150px;
+    }
+  }
+
+  article {
+    text-align: center;
+
+    &.profile-form {
+      padding: 20px 30px;
+    }
+
+    svg, span {
+      vertical-align: middle;
+    }
+
+    svg {
+      fill: rgba(#000, 0.2);
+      margin-right: 5px;
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+button, svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+button {
+  font-size: 13px;
+  margin-right: 10px;
+  padding: 7px 0;
+}

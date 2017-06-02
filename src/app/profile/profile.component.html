@@ -1,0 +1,58 @@
+<section>
+  <header>
+    <div class="profile-container">
+      <img [src]="user.image" alt="" *ngIf="this.user.image != ''">
+      <svg class="icon icon-user-circle" *ngIf="this.user.image == ''">
+        <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>
+      </svg>
+    </div>
+  </header>
+
+  <article *ngIf="!editMode">
+    <p>
+      <svg class="icon icon-user-circle" *ngIf="this.user.image == ''">
+        <use xlink:href="assets/images/sprite.svg#icon-user"></use>
+      </svg>
+      <span>{{ user.first_name }} {{ user.last_name }}</span>
+    </p>
+    <p>
+      <svg class="icon icon-user-circle" *ngIf="this.user.image == ''">
+        <use xlink:href="assets/images/sprite.svg#icon-email"></use>
+      </svg>
+      <span>{{ user.email }}</span>
+    </p>
+
+    <button md-raised-button (click)="editProfile()">Edit Profile</button>
+    <button md-raised-button (click)="logout()">Sign Out</button>
+  </article>
+
+  <article *ngIf="editMode" class="profile-form" [formGroup]="editForm">
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="First Name"
+             (input)="detectChangesInProfileForm()"
+             formControlName="first_name">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Last Name"
+             (input)="detectChangesInProfileForm()"
+             formControlName="last_name">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Email"
+             (input)="detectChangesInProfileForm()"
+             formControlName="email">
+    </md-input-container>
+
+    <button md-raised-button
+            [ngClass]="{'disabled': !editForm.valid}"
+            [disabled]="!editForm.valid || profileNotChanged"
+            (click)="updateProfile()">Save</button>
+    <button md-raised-button (click)="toggleEditMode()">Cancel</button>
+  </article>
+<pre>
+  {{ user | json }}
+  {{ editForm.value | json }}
+</pre>
+</section>
