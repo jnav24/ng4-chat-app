@@ -17,6 +17,14 @@ section {
     right: 0;
   }
 
+  .icon-close {
+    cursor: pointer;
+    fill: #fff;
+    height: 15px;
+    width: 15px;
+    @include posa(15px,n,n,15px);
+  }
+
   header {
     background: $primary;
     padding: 20px 0;

@@ -12,6 +12,7 @@ import { Users } from '../common/models/users.model';
 export class ChatComponent implements OnInit {
   user;
   users;
+  openProfileWindow = false;
 
   constructor(
       private route: ActivatedRoute,
@@ -35,6 +36,10 @@ export class ChatComponent implements OnInit {
           this.router.navigate(['login']);
         })
         .catch(error => console.log(error));
+  }
+
+  toggleOpenProfile() {
+    this.openProfileWindow = !this.openProfileWindow;
   }
 
   private getCurrentUser(uid) {

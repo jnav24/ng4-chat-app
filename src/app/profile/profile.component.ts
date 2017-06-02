@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Users } from "../common/models/users.model";
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { UsersService } from "../common/services/users.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
@@ -12,6 +11,8 @@ export class ProfileComponent implements OnInit {
   editMode: boolean = false;
   editForm: FormGroup;
   @Input() user;
+  @Input() setProfileWindow;
+  @Output() resetProfile: EventEmitter<any> = new EventEmitter();
   profileNotChanged: boolean;
 
   constructor(private usersService: UsersService, private fb: FormBuilder) {}
@@ -62,5 +63,14 @@ export class ProfileComponent implements OnInit {
   isUserImageAvailable() {
     var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
     return this.user.image != '' && this.user.image != null && urlregex.test(this.user.image);
+  }
+
+  openProfile() {
+    return typeof this.setProfileWindow !== 'undefined' && this.setProfileWindow;
+  }
+
+  closeProfile() {
+    this.setProfileWindow = false;
+    this.resetProfile.emit();
   }
 }

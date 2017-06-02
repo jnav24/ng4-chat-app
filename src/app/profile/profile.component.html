@@ -1,4 +1,8 @@
-<section>
+<section [ngClass]="{'open': openProfile()}">
+  <svg class="icon icon-close" (click)="closeProfile()">
+    <use xlink:href="assets/images/sprite.svg#icon-close"></use>
+  </svg>
+
   <header>
     <div class="profile-container">
       <img [src]="user.image" alt="" *ngIf="isUserImageAvailable()">

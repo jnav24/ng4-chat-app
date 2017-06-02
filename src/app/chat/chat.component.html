@@ -1,5 +1,9 @@
-<app-nav *ngIf="user" [user]="user"></app-nav>
-<app-profile *ngIf="user" [user]="user"></app-profile>
+<app-nav *ngIf="user" [user]="user" (openProfile)="toggleOpenProfile()"></app-nav>
+<app-profile
+        *ngIf="user"
+        [user]="user"
+        (resetProfile)="toggleOpenProfile()"
+        [setProfileWindow]="openProfileWindow"></app-profile>
 
 <!--<section>-->
   <!--<aside>-->

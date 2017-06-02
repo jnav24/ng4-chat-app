@@ -2,7 +2,7 @@
   <img src="assets/images/logo-yak.png" alt="" class="logo">
 
 
-  <div class="profile-container">
+  <div class="profile-container" (click)="showProfile()">
     <img [src]="user.image" alt="" *ngIf="isUserImageAvailable()">
     <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable()">
       <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>

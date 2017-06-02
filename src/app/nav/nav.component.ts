@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {UsersService} from "../common/services/users.service";
 
 @Component({
@@ -8,6 +8,7 @@ import {UsersService} from "../common/services/users.service";
 })
 export class NavComponent implements OnInit {
   @Input() user;
+  @Output() openProfile: EventEmitter<any> = new EventEmitter();
 
   constructor(private usersService: UsersService) { }
 
@@ -20,4 +21,7 @@ export class NavComponent implements OnInit {
     return this.user.image != '' && this.user.image != null && urlregex.test(this.user.image);
   }
 
+  showProfile() {
+    this.openProfile.emit();
+  }
 }
