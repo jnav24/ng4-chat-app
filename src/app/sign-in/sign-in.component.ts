@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
 
     this.signInService.createNewUser(email, password)
         .then(auth => {
-          this.signInService.addUser(new Users(email, this.sign_up.value.first_name, this.sign_up.value.last_name));
+          this.signInService.addUser(new Users(auth.uid, email, this.sign_up.value.first_name, this.sign_up.value.last_name));
             this.redirectUser(auth);
         })
         .catch(error => {

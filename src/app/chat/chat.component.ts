@@ -10,7 +10,8 @@ import { Users } from '../common/models/users.model';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  users: Users[];
+  user;
+  users;
 
   constructor(
       private route: ActivatedRoute,
@@ -22,9 +23,10 @@ export class ChatComponent implements OnInit {
     this.chatService.user.subscribe(user => {
       if (user === null || typeof user.uid === 'undefined') {
         this.router.navigate(['login']);
+      } else {
+        this.getUsersList(user.uid);
       }
     });
-    this.getUsersList();
   }
 
   logout() {
@@ -35,7 +37,16 @@ export class ChatComponent implements OnInit {
         .catch(error => console.log(error));
   }
 
-  private getUsersList() {
-    this.usersService.getAllUsers().subscribe(users => this.users = users);
+  private getCurrentUser(uid) {
+    this.user = this.users.filter(user => {
+      return user.user_id === uid;
+    })[0];
+  }
+
+  private getUsersList(uid) {
+    this.usersService.getAllUsers().subscribe(users => {
+      this.users = users;
+      this.getCurrentUser(uid);
+    });
   }
 }

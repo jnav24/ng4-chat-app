@@ -9,4 +9,12 @@ export class UsersService {
   getAllUsers() {
     return this.af.list('/users');
   }
+
+  getUserImage(user) {
+    if (typeof user['image'] === 'undefined') {
+      user['image'] = '';
+    }
+
+    return user;
+  }
 }

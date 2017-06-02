@@ -19,13 +19,17 @@ import { ChatComponent } from './chat/chat.component';
 import { ChatService } from "./chat/chat.service";
 import { ValidateConfirmDirective } from './common/directives/validate-confirm.directive';
 import {UsersService} from "./common/services/users.service";
+import { ProfileComponent } from './profile/profile.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
     ChatComponent,
-    ValidateConfirmDirective
+    ValidateConfirmDirective,
+    ProfileComponent,
+    NavComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
