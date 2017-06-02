@@ -5,17 +5,22 @@
         (resetProfile)="toggleOpenProfile()"
         [setProfileWindow]="openProfileWindow"></app-profile>
 
-<!--<section>-->
-  <!--<aside>-->
-    <!--<img src="assets/images/logo-yak.png" alt="" class="logo">-->
-    <!--<button (click)="logout()">Sign Out</button>-->
+<section>
+  <aside>
+    <ul>
+      <li *ngFor="let c_user of users">
+        <div class="profile-container" (click)="showProfile()">
+          <img [src]="c_user.image" alt="" *ngIf="isUserImageAvailable(c_user)">
+          <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable(c_user)">
+            <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>
+          </svg>
+        </div>
+        {{ c_user.first_name }} {{ c_user.last_name }}
+      </li>
+    </ul>
+  </aside>
 
-    <!--<ul>-->
-      <!--<li *ngFor="let user of users">{{ user.first_name }} {{ user.last_name }}</li>-->
-    <!--</ul>-->
-  <!--</aside>-->
-
-  <!--<article>-->
-    <!--Chat Body-->
-  <!--</article>-->
-<!--</section>-->
+  <article>
+    Chat Body
+  </article>
+</section>

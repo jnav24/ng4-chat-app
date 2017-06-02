@@ -4,14 +4,14 @@ section {
   background: #f1f1f1;
   display: flex;
   height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
+  //left: 0;
+  //position: absolute;
+  //top: 0;
   width: 100%;
 
   aside {
-    background: $primary;
-    color: #fff;
+    background: #fff;
+    color: #000;
     flex-grow: 1;
 
     .logo {
