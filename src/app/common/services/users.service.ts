@@ -32,4 +32,8 @@ export class UsersService {
     const user = this.af.object(`/users/${key}`);
     user.update(update);
   }
+
+  logoutUser() {
+    return this.auth.auth.signOut();
+  }
 }

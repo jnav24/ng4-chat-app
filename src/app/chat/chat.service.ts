@@ -10,8 +10,4 @@ export class ChatService {
   constructor(private auth: AngularFireAuth) {
     this.user = auth.authState;
   }
-
-  logoutUser() {
-    return this.auth.auth.signOut();
-  }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ChatService} from "./chat.service";
 import {UsersService} from "../common/services/users.service";
-import { Users } from '../common/models/users.model';
 
 @Component({
   selector: 'app-chat',
@@ -32,14 +31,6 @@ export class ChatComponent implements OnInit {
   isUserImageAvailable(user) {
     var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
     return user.image != '' && user.image != null && urlregex.test(user.image);
-  }
-
-  logout() {
-    this.chatService.logoutUser()
-        .then(auth => {
-          this.router.navigate(['login']);
-        })
-        .catch(error => console.log(error));
   }
 
   toggleOpenProfile() {

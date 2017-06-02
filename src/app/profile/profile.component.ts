@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { UsersService } from "../common/services/users.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
   @Output() resetProfile: EventEmitter<any> = new EventEmitter();
   profileNotChanged: boolean;
 
-  constructor(private usersService: UsersService, private fb: FormBuilder) {}
+  constructor(private usersService: UsersService, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.user = this.usersService.getUserImage(this.user);
@@ -72,5 +73,13 @@ export class ProfileComponent implements OnInit {
   closeProfile() {
     this.setProfileWindow = false;
     this.resetProfile.emit();
+  }
+
+  logout() {
+    this.usersService.logoutUser()
+        .then(auth => {
+          this.router.navigate(['login']);
+        })
+        .catch(error => console.log(error));
   }
 }

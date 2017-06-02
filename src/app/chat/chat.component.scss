@@ -46,7 +46,13 @@ section {
 
     .profile-container {
       $size: 40px;
+      overflow: hidden;
       @include circle($size, #fff);
+
+      img {
+        min-height: 100%;
+        width: 100%;
+      }
 
       svg {
         fill: $primary;
