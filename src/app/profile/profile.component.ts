@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
       first_name: [this.user.first_name, [Validators.required, Validators.minLength(3)]],
       last_name: [this.user.last_name, [Validators.required, Validators.minLength(3)]],
       email: [{value: this.user.email, disabled: true}, [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+      image: [this.user.image, []],
     });
   }
 
@@ -56,5 +57,10 @@ export class ProfileComponent implements OnInit {
         return;
       }
     });
+  }
+
+  isUserImageAvailable() {
+    var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+    return this.user.image != '' && this.user.image != null && urlregex.test(this.user.image);
   }
 }

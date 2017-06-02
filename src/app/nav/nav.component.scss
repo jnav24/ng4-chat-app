@@ -13,9 +13,15 @@ nav {
   }
 
   .profile-container {
+    cursor: pointer;
     float: right;
     overflow: hidden;
     @include circle(45px, $primary);
+
+    img {
+      min-height: 100%;
+      width: 100%;
+    }
 
     svg {
       fill: #fff;

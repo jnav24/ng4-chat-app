@@ -1,8 +1,8 @@
 <section>
   <header>
     <div class="profile-container">
-      <img [src]="user.image" alt="" *ngIf="this.user.image != ''">
-      <svg class="icon icon-user-circle" *ngIf="this.user.image == ''">
+      <img [src]="user.image" alt="" *ngIf="isUserImageAvailable()">
+      <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable()">
         <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>
       </svg>
     </div>
@@ -43,6 +43,12 @@
       <input mdInput placeholder="Email"
              (input)="detectChangesInProfileForm()"
              formControlName="email">
+    </md-input-container>
+
+    <md-input-container class="fw-full">
+      <input mdInput placeholder="Image URL"
+             (input)="detectChangesInProfileForm()"
+             formControlName="image">
     </md-input-container>
 
     <button md-raised-button

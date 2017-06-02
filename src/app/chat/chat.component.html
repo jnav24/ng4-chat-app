@@ -1,4 +1,4 @@
-<app-nav></app-nav>
+<app-nav *ngIf="user" [user]="user"></app-nav>
 <app-profile *ngIf="user" [user]="user"></app-profile>
 
 <!--<section>-->

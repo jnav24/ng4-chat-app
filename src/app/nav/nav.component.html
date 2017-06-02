@@ -3,7 +3,8 @@
 
 
   <div class="profile-container">
-    <svg class="icon icon-user-circle">
+    <img [src]="user.image" alt="" *ngIf="isUserImageAvailable()">
+    <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable()">
       <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>
     </svg>
   </div>

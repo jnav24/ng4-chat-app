@@ -1,14 +1,21 @@
 @import '../../assets/base/imports';
 
+$container: 300px;
+
 section {
   background: #fff;
   //border-left: 1px solid rgba(#000, 0.1);
   box-shadow: -2px 0 8px rgba(#000, 0.2);
   height: 100%;
   position: fixed;
-  right: 0;
+  right: -#{$container};
   top: 0;
-  width: 300px;
+  width: $container;
+  @include transition(0.5s all ease);
+
+  &.open {
+    right: 0;
+  }
 
   header {
     background: $primary;
@@ -19,6 +26,11 @@ section {
       margin: 0 auto;
       overflow: hidden;
       @include circle(150px, $primary);
+    }
+
+    img {
+      min-height: 100%;
+      width: 100%;
     }
 
     svg {
