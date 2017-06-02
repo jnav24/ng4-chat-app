@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class ProfileComponent implements OnInit {
   editMode: boolean = false;
   editForm: FormGroup;
-  @Input() user: Users;
+  @Input() user;
   profileNotChanged: boolean;
 
   constructor(private usersService: UsersService, private fb: FormBuilder) {}
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
     this.editForm = this.fb.group({
       first_name: [this.user.first_name, [Validators.required, Validators.minLength(3)]],
       last_name: [this.user.last_name, [Validators.required, Validators.minLength(3)]],
-      email: [this.user.email, [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
+      email: [{value: this.user.email, disabled: true}, [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
     });
   }
 
@@ -35,6 +35,15 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    let updated = {};
+
+    Object.keys(this.editForm.value).forEach(key => {
+      if (this.user[key] !== this.editForm.value[key]) {
+        updated[key] = this.editForm.value[key];
+      }
+    });
+
+    this.usersService.updateUserProfile(this.user.$key, updated);
     this.toggleEditMode();
   }
 
