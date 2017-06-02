@@ -1,0 +1,65 @@
+@import '../../../assets/base/imports';
+
+$marginSpace: 50%;
+
+.chat-bubble_container {
+  margin-bottom: 20px;
+  
+  .chat-bubble {
+    background: $primary;
+    font-size: 13px;
+    padding: 10px;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+    }
+  }
+
+  &.contributor {
+    margin-left: 20px;
+    margin-right: $marginSpace;
+
+    .chat-bubble {
+      background: lighten($primary, 20%);
+      @include border-radius(0 10px 10px 10px);
+
+      &:after {
+        @include posa(0px, n,n, -10px);
+        @include triangle-corner(20px, topRight, lighten($primary, 20%));
+      }
+    }
+
+    .chat-bubble_timestamp {
+      padding-right: 10px;
+      text-align: right;
+    }
+  }
+
+  &.recipient {
+    margin-left: $marginSpace;
+    margin-right: 20px;
+
+    .chat-bubble {
+      background: darken($primary, 15%);
+      color: #fff;
+      @include border-radius(10px 0 10px 10px);
+
+      &:after {
+        @include posa(0px, -10px, n, n);
+        @include triangle-corner(20px, topLeft, darken($primary, 15%));
+      }
+    }
+
+    .chat-bubble_timestamp {
+      padding-left: 10px;
+    }
+  }
+
+  .chat-bubble_timestamp {
+    color: darken(#f1f1f1, 20%);
+    font-size: 11px;
+    margin-top: 5px;
+  }
+}

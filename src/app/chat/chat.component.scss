@@ -71,6 +71,13 @@ section {
     flex-grow: 4;
     position: relative;
 
+    .chat_area {
+      height: calc(100% - 62px);
+      overflow: auto;
+      width: 100%;
+      @include posa(0,n,n,0);
+    }
+
     .chat_box {
       background: #fff;
       height: 62px;

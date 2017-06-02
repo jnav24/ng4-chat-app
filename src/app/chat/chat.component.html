@@ -24,6 +24,9 @@
   </aside>
 
   <article>
+    <div class="chat_area" id="chat_area">
+      <chat-bubble *ngFor="let test of test_loop"></chat-bubble>
+    </div>
 
     <div class="chat_box" [formGroup]="chat">
       <textarea formControlName="message"></textarea>

@@ -14,6 +14,7 @@ export class ChatComponent implements OnInit {
   users;
   chat: FormGroup;
   openProfileWindow = false;
+  test_loop = Array(50).fill(4);
 
   constructor(
       private chatService: ChatService,
@@ -27,11 +28,14 @@ export class ChatComponent implements OnInit {
         this.router.navigate(['login']);
       } else {
         this.getUsersList(user.uid);
-        this.chat = this.fb.group({
-          message: ['', [Validators.required]],
-        });
+        this.setScrollBar();
       }
     });
+
+    this.chat = this.fb.group({
+      message: ['', [Validators.required]],
+    });
+
   }
 
   isUserImageAvailable(user) {
@@ -53,11 +57,16 @@ export class ChatComponent implements OnInit {
   }
 
   private getUsersList(uid) {
-    this.usersService.getAllUsers().do(console.log).subscribe(users => {
+    this.usersService.getAllUsers().subscribe(users => {
       this.users = users.map(user => {
           return this.usersService.getUserImage(user);
       });
       this.getCurrentUser(uid);
     });
+  }
+
+  private setScrollBar() {
+    const element = document.getElementById("chat_area");
+    element.scrollTop = element.scrollHeight;
   }
 }
