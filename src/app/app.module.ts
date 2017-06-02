@@ -21,6 +21,7 @@ import { ValidateConfirmDirective } from './common/directives/validate-confirm.d
 import {UsersService} from "./common/services/users.service";
 import { ProfileComponent } from './profile/profile.component';
 import { NavComponent } from './nav/nav.component';
+import { ChatBubbleComponent } from './chat/chat-bubble/chat-bubble.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NavComponent } from './nav/nav.component';
     ChatComponent,
     ValidateConfirmDirective,
     ProfileComponent,
-    NavComponent
+    NavComponent,
+    ChatBubbleComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
