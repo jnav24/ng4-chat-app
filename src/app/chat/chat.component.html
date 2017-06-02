@@ -9,7 +9,7 @@
   <aside>
     <ul>
       <li *ngFor="let c_user of users">
-        <div class="profile-container" (click)="showProfile()">
+        <div class="profile-container">
           <img [src]="c_user.image" alt="" *ngIf="isUserImageAvailable(c_user)">
           <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable(c_user)">
             <use xlink:href="assets/images/sprite.svg#icon-user-circle"></use>
@@ -24,6 +24,17 @@
   </aside>
 
   <article>
-    Chat Body
+
+    <div class="chat_box" [formGroup]="chat">
+      <textarea formControlName="message"></textarea>
+      <button md-raised-button
+              [disabled]="!chat.valid"
+              [ngClass]="{'disabled': !chat.valid}"
+              class="btn_send">
+        <svg class="icon icon-send">
+          <use xlink:href="assets/images/sprite.svg#icon-send"></use>
+        </svg>
+      </button>
+    </div>
   </article>
 </section>

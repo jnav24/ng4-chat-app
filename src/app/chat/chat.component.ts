@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {ChatService} from "./chat.service";
 import {UsersService} from "../common/services/users.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-chat',
@@ -11,11 +12,13 @@ import {UsersService} from "../common/services/users.service";
 export class ChatComponent implements OnInit {
   user;
   users;
+  chat: FormGroup;
   openProfileWindow = false;
 
   constructor(
       private chatService: ChatService,
       private usersService: UsersService,
+      private fb: FormBuilder,
       private router: Router) { }
 
   ngOnInit() {
@@ -24,6 +27,9 @@ export class ChatComponent implements OnInit {
         this.router.navigate(['login']);
       } else {
         this.getUsersList(user.uid);
+        this.chat = this.fb.group({
+          message: ['', [Validators.required]],
+        });
       }
     });
   }
