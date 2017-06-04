@@ -23,4 +23,10 @@ export class ChannelsService {
   getMessages(channel_id) {
     return this.af.list(`chat/${channel_id}`);
   }
+
+  sendMessage(channel_id, message) {
+    console.log(channel_id);
+    console.log(message);
+    // return this.af.list(`channels/${channel_id}`).push(message);
+  }
 }

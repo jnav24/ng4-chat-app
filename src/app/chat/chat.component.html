@@ -24,15 +24,16 @@
   </aside>
 
   <article>
-    <!--<div class="chat_area" id="chat_area">-->
-      <!--<chat-bubble *ngFor="let test of test_loop"></chat-bubble>-->
-    <!--</div>-->
+    <div class="chat_area" id="chat_area">
+      <chat-bubble *ngFor="let message of messages"></chat-bubble>
+    </div>
 
     <div class="chat_box" [formGroup]="chat">
       <textarea formControlName="message"></textarea>
       <button md-raised-button
               [disabled]="!chat.valid"
               [ngClass]="{'disabled': !chat.valid}"
+              (click)="sendMessage()"
               class="btn_send">
         <svg class="icon icon-send">
           <use xlink:href="assets/images/sprite.svg#icon-send"></use>

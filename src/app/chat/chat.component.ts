@@ -4,6 +4,7 @@ import {ChatService} from "./chat.service";
 import {UsersService} from "../common/services/users.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ChannelsService} from "../common/services/channels.service";
+import {Messages} from '../common/models/messages.model';
 
 @Component({
   selector: 'app-chat',
@@ -13,7 +14,9 @@ import {ChannelsService} from "../common/services/channels.service";
 export class ChatComponent implements OnInit {
   user;
   users;
+  channel_id: string;
   chat: FormGroup;
+  messages;
   openProfileWindow = false;
   test_loop = Array(50).fill(4);
 
@@ -48,22 +51,25 @@ export class ChatComponent implements OnInit {
       });
 
       if(!channel_id.length) {
-        console.log('empty');
         this.channelsService.createChannel(this.user['$key'], user_selected.$key).key;
       } else {
-        console.log('got it!');
-        this.channelsService.getMessages(channel_id[0].$key).subscribe(messages => {
-          console.log(messages);
+        this.channel_id = channel_id[0].$key;
+        this.channelsService.getMessages(this.channel_id).subscribe(messages => {
+          this.messages = messages;
         });
       }
     });
-
-    // this.channelsService.getMessages(channel_id);
   }
 
   isUserImageAvailable(user) {
     var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
     return user.image != '' && user.image != null && urlregex.test(user.image);
+  }
+
+  sendMessage() {
+    const message = new Messages(this.user['$key'], this.chat.value.message, new Date());
+    this.channelsService.sendMessage(this.channel_id, message);
+    this.chat.reset();
   }
 
   toggleOpenProfile() {
