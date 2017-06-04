@@ -1,9 +1,10 @@
-<div class="chat-bubble_container recipient">
+<div class="chat-bubble_container"
+    [ngClass]="{'recipient': user === message.user_key, 'contributor': user !== message.user_key}">
   <div class="chat-bubble">
-    Hi! Justin is awesome!
+    {{ message.message }}
   </div>
 
   <div class="chat-bubble_timestamp">
-    2:30 PM
+    {{ message.timestamp | date:'jm' }}
   </div>
 </div>

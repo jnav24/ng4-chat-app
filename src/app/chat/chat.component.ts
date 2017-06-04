@@ -5,6 +5,7 @@ import {UsersService} from "../common/services/users.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ChannelsService} from "../common/services/channels.service";
 import {Messages} from '../common/models/messages.model';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-chat',
@@ -67,7 +68,7 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    const message = new Messages(this.user['$key'], this.chat.value.message, new Date());
+    const message = new Messages(this.user['$key'], this.chat.value.message, firebase.database.ServerValue.TIMESTAMP);
     this.channelsService.sendMessage(this.channel_id, message);
     this.chat.reset();
   }

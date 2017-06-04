@@ -25,7 +25,10 @@
 
   <article>
     <div class="chat_area" id="chat_area">
-      <chat-bubble *ngFor="let message of messages"></chat-bubble>
+      <chat-bubble
+              *ngFor="let message of messages"
+              [message]="message"
+              [user]="user.$key"></chat-bubble>
     </div>
 
     <div class="chat_box" [formGroup]="chat">
