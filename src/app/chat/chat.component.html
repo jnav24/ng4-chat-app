@@ -8,7 +8,9 @@
 <section>
   <aside>
     <ul>
-      <li *ngFor="let c_user of users" (click)="getMessages(c_user)">
+      <li *ngFor="let c_user of users"
+          [ngClass]="{'selected': c_user.$key === selected_user}"
+          (click)="getMessages(c_user)">
         <div class="profile-container">
           <img [src]="c_user.image" alt="" *ngIf="isUserImageAvailable(c_user)">
           <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable(c_user)">
@@ -23,7 +25,7 @@
     </ul>
   </aside>
 
-  <article>
+  <article *ngIf="selected_user != null">
     <div class="chat_area" id="chat_area">
       <chat-bubble
               *ngFor="let message of messages"
@@ -43,5 +45,9 @@
         </svg>
       </button>
     </div>
+  </article>
+
+  <article *ngIf="selected_user == null">
+    Hey!
   </article>
 </section>

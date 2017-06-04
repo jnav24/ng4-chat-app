@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit {
   chat: FormGroup;
   messages;
   openProfileWindow = false;
-  test_loop = Array(50).fill(4);
+  selected_user;
 
   constructor(
       private chatService: ChatService,
@@ -45,6 +45,7 @@ export class ChatComponent implements OnInit {
   }
 
   getMessages(user_selected) {
+    this.selected_user = user_selected.$key;
     this.channelsService.getChannels().subscribe(channels => {
       let channel_id = channels.filter(channel => {
         return typeof channel[this.user['$key']] !== 'undefined'
