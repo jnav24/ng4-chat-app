@@ -8,7 +8,7 @@
 <section>
   <aside>
     <ul>
-      <li *ngFor="let c_user of users">
+      <li *ngFor="let c_user of users" (click)="getMessages(c_user)">
         <div class="profile-container">
           <img [src]="c_user.image" alt="" *ngIf="isUserImageAvailable(c_user)">
           <svg class="icon icon-user-circle" *ngIf="!isUserImageAvailable(c_user)">
@@ -24,9 +24,9 @@
   </aside>
 
   <article>
-    <div class="chat_area" id="chat_area">
-      <chat-bubble *ngFor="let test of test_loop"></chat-bubble>
-    </div>
+    <!--<div class="chat_area" id="chat_area">-->
+      <!--<chat-bubble *ngFor="let test of test_loop"></chat-bubble>-->
+    <!--</div>-->
 
     <div class="chat_box" [formGroup]="chat">
       <textarea formControlName="message"></textarea>

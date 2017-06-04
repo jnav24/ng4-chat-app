@@ -22,6 +22,7 @@ import {UsersService} from "./common/services/users.service";
 import { ProfileComponent } from './profile/profile.component';
 import { NavComponent } from './nav/nav.component';
 import { ChatBubbleComponent } from './chat/chat-bubble/chat-bubble.component';
+import {ChannelsService} from "./common/services/channels.service";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ChatBubbleComponent } from './chat/chat-bubble/chat-bubble.component';
     AngularFireDatabase,
     AngularFireAuth,
     UsersService,
+    ChannelsService
   ],
   bootstrap: [AppComponent]
 })

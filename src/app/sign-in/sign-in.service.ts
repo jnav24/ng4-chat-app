@@ -15,7 +15,7 @@ export class SignInService {
 
   addUser(user: Users) {
     const users = this.af.list('/users');
-    users.push(user);
+    return users.push(user);
   }
 
   createNewUser(email: string, pass: string): firebase.Promise<any> {

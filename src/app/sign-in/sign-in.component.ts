@@ -16,7 +16,11 @@ export class SignInComponent implements OnInit {
   sign_up: FormGroup;
   url: any;
 
-  constructor(private route: ActivatedRoute, private signInService: SignInService, private router: Router, private fb: FormBuilder) { }
+  constructor(
+      private route: ActivatedRoute,
+      private signInService: SignInService,
+      private router: Router,
+      private fb: FormBuilder) { }
 
   ngOnInit() {
     this.log_in = this.fb.group({
@@ -45,8 +49,13 @@ export class SignInComponent implements OnInit {
 
     this.signInService.createNewUser(email, password)
         .then(auth => {
-          this.signInService.addUser(new Users(auth.uid, email, this.sign_up.value.first_name, this.sign_up.value.last_name));
-            this.redirectUser(auth);
+          this.signInService.addUser(new Users(
+              auth.uid,
+              email,
+              this.sign_up.value.first_name,
+              this.sign_up.value.last_name
+          ));
+          this.redirectUser(auth);
         })
         .catch(error => {
           this.error = error.message;

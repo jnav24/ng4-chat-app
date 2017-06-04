@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ChatService} from "./chat.service";
 import {UsersService} from "../common/services/users.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ChannelsService} from "../common/services/channels.service";
 
 @Component({
   selector: 'app-chat',
@@ -20,6 +21,7 @@ export class ChatComponent implements OnInit {
       private chatService: ChatService,
       private usersService: UsersService,
       private fb: FormBuilder,
+      private channelsService: ChannelsService,
       private router: Router) { }
 
   ngOnInit() {
@@ -36,6 +38,27 @@ export class ChatComponent implements OnInit {
       message: ['', [Validators.required]],
     });
 
+  }
+
+  getMessages(user_selected) {
+    this.channelsService.getChannels().subscribe(channels => {
+      let channel_id = channels.filter(channel => {
+        return typeof channel[this.user['$key']] !== 'undefined'
+            && typeof channel[user_selected.$key] !== 'undefined'
+      });
+
+      if(!channel_id.length) {
+        console.log('empty');
+        this.channelsService.createChannel(this.user['$key'], user_selected.$key).key;
+      } else {
+        console.log('got it!');
+        this.channelsService.getMessages(channel_id[0].$key).subscribe(messages => {
+          console.log(messages);
+        });
+      }
+    });
+
+    // this.channelsService.getMessages(channel_id);
   }
 
   isUserImageAvailable(user) {
@@ -59,7 +82,7 @@ export class ChatComponent implements OnInit {
   private getUsersList(uid) {
     this.usersService.getAllUsers().subscribe(users => {
       this.users = users.map(user => {
-          return this.usersService.getUserImage(user);
+        return this.usersService.getUserImage(user);
       });
       this.getCurrentUser(uid);
     });
@@ -67,6 +90,9 @@ export class ChatComponent implements OnInit {
 
   private setScrollBar() {
     const element = document.getElementById("chat_area");
-    element.scrollTop = element.scrollHeight;
+
+    if (typeof element !== 'undefined' && element !== null) {
+      element.scrollTop = element.scrollHeight;
+    }
   }
 }
