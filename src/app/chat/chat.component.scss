@@ -74,12 +74,19 @@ section {
   article {
     flex-grow: 4;
     position: relative;
+    
+    .empty_state {
+      color: darken(#f1f1f1, 10%);
+      margin-top: 40%;
+      text-align: center;
+    }
 
     .chat_area {
       height: calc(100% - 62px);
       overflow-y: scroll;
       padding-top: 20px;
       width: 100%;
+      @include box-sizing(border-box);
       @include posa(0,n,n,0);
     }
 

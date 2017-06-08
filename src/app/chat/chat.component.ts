@@ -58,6 +58,7 @@ export class ChatComponent implements OnInit {
         this.channel_id = channel_id[0].$key;
         this.channelsService.getMessages(this.channel_id).subscribe(messages => {
           this.messages = messages;
+          setTimeout(() => { this.setScrollBar() }, 500 );
         });
       }
     });
