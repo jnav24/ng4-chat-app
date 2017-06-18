@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {ChatService} from "./chat.service";
 import {UsersService} from "../common/services/users.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -26,16 +26,18 @@ export class ChatComponent implements OnInit {
       private usersService: UsersService,
       private fb: FormBuilder,
       private channelsService: ChannelsService,
-      private router: Router) { }
+      private route: ActivatedRoute,
+      private router: Router) {
+    route.data.subscribe(u => {
+      this.user = u['user'][0];
+    });
+  }
 
   ngOnInit() {
     this.chatService.user.subscribe(user => {
       if (user === null || typeof user.uid === 'undefined') {
         this.router.navigate(['login']);
       } else {
-        this.usersService.getCurrentUser(user.uid).subscribe(u => {
-          this.user = u[0];
-        });
         this.getUsersList(user.uid);
         this.setScrollBar();
       }
