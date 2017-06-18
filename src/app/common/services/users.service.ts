@@ -12,6 +12,16 @@ export class UsersService {
     return this.af.list('/users');
   }
 
+  getCurrentUser(uid) {
+    return this.af.list('/users', {
+      query: {
+        orderByChild: 'user_id',
+        equalTo: uid,
+        limitToFirst: 1
+      }
+    });
+  }
+
   getUserImage(user) {
     if (typeof user['image'] === 'undefined') {
       user['image'] = '';

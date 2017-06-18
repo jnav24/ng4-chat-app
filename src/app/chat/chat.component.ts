@@ -33,6 +33,9 @@ export class ChatComponent implements OnInit {
       if (user === null || typeof user.uid === 'undefined') {
         this.router.navigate(['login']);
       } else {
+        this.usersService.getCurrentUser(user.uid).subscribe(u => {
+          this.user = u[0];
+        });
         this.getUsersList(user.uid);
         this.setScrollBar();
       }
@@ -41,26 +44,15 @@ export class ChatComponent implements OnInit {
     this.chat = this.fb.group({
       message: ['', [Validators.required]],
     });
-
   }
 
   getMessages(user_selected) {
+    this.channel_id = user_selected.channel_id;
     this.selected_user = user_selected.$key;
-    this.channelsService.getChannels().subscribe(channels => {
-      let channel_id = channels.filter(channel => {
-        return typeof channel[this.user['$key']] !== 'undefined'
-            && typeof channel[user_selected.$key] !== 'undefined'
-      });
 
-      if(!channel_id.length) {
-        this.channelsService.createChannel(this.user['$key'], user_selected.$key).key;
-      } else {
-        this.channel_id = channel_id[0].$key;
-        this.channelsService.getMessages(this.channel_id).subscribe(messages => {
-          this.messages = messages;
-          setTimeout(() => { this.setScrollBar() }, 500 );
-        });
-      }
+    this.channelsService.getMessages(user_selected.channel_id).subscribe(messages => {
+      this.messages = messages;
+      setTimeout(() => { this.setScrollBar() }, 500 );
     });
   }
 
@@ -79,21 +71,37 @@ export class ChatComponent implements OnInit {
     this.openProfileWindow = !this.openProfileWindow;
   }
 
-  private getCurrentUser(uid) {
-    for (let i = 0; i < this.users.length; i++) {
-      if (this.users[i].user_id === uid) {
-        this.user = this.users[i];
-        this.users.splice(i, 1);
-      }
+  private getChannelId(user) {
+    let channel_id = this.channelsService.getChannelList().filter(channel => {
+      return typeof channel[this.user['$key']] !== 'undefined'
+          && typeof channel[user['$key']] !== 'undefined'
+    });
+
+    if (!channel_id.length) {
+      return this.channelsService.createChannel(this.user['$key'], user.$key).key;
     }
+
+    return channel_id[0].$key;
   }
 
   private getUsersList(uid) {
     this.usersService.getAllUsers().subscribe(users => {
-      this.users = users.map(user => {
-        return this.usersService.getUserImage(user);
-      });
-      this.getCurrentUser(uid);
+      this.users = users
+          .filter(user => { return uid != user.user_id })
+          .map(user => {
+            user = this.usersService.getUserImage(user);
+            user['channel_id'] = this.getChannelId(user);
+
+            this.channelsService.getLastMessage(user['channel_id']).subscribe(msg => {
+              const message = msg;
+
+              if (typeof message[0] !== 'undefined') {
+                user['last_msg'] = message[0].message;
+              }
+            });
+
+            return user;
+          });
     });
   }
 
