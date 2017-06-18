@@ -68,6 +68,16 @@ section {
 
     .c_user-info {
       margin-left: 5px;
+
+      p {
+        margin: 0;
+        padding: 0;
+
+        &.latest_msg {
+          color: #9e9d9d;
+          font-size: 12px;
+        }
+      }
     }
   }
 
