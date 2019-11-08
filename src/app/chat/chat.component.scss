@@ -13,6 +13,7 @@ section {
     border-right: 1px solid #d1d1d1;
     color: #000;
     flex-grow: 1;
+    max-width: 300px;
     overflow: auto;
 
     .logo {
@@ -76,6 +77,10 @@ section {
         &.latest_msg {
           color: #9e9d9d;
           font-size: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 200px;
         }
       }
     }
